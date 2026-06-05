@@ -1,0 +1,326 @@
+/**
+ * Documentation Page Styles - Useless Bot
+ * Styles specific to the documentation page
+ */
+
+/* ===================================
+   Layout
+   =================================== */
+.docs-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===================================
+   Sidebar Navigation
+   =================================== */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-bg-secondary);
+  border-right: var(--border-width-thin) solid var(--color-border-primary);
+  padding: var(--spacing-lg);
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  top: 0;
+  left: 0;
+}
+
+.sidebar-title {
+  font-size: var(--font-size-base);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-weight: bold;
+  color: var(--color-text-primary);
+}
+
+.sidebar h2 {
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  font-size: 0.9rem;
+  border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+  padding-bottom: var(--spacing-sm);
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 8px 0;
+}
+
+.sidebar a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  display: block;
+  padding: var(--spacing-xs) 0;
+  font-size: var(--font-size-small);
+  transition: var(--transition-base);
+}
+
+.sidebar a:hover,
+.sidebar a:focus {
+  color: var(--color-link-hover);
+}
+
+.sidebar a:focus-visible {
+  outline: 2px solid var(--color-border-accent);
+  outline-offset: 2px;
+}
+
+/* ===================================
+   Main Content Area
+   =================================== */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: var(--spacing-2xl);
+  flex: 1;
+  max-width: var(--max-width-content);
+}
+
+/* ===================================
+   Breadcrumb
+   =================================== */
+.breadcrumb {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+  margin-bottom: var(--spacing-lg);
+}
+
+/* ===================================
+   Back Link
+   =================================== */
+.back-link {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin: var(--spacing-xl) 0;
+}
+
+.back-link:hover,
+.back-link:focus {
+  color: var(--color-link-hover);
+}
+
+/* ===================================
+   Documentation Headers
+   =================================== */
+.main-content h1 {
+  border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+  padding-bottom: var(--spacing-md);
+}
+
+.main-content h2 {
+  margin-top: var(--spacing-xl);
+}
+
+/* ===================================
+   Feature Grid
+   =================================== */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin: 25px 0;
+}
+
+.feature-card {
+  background-color: var(--color-bg-white);
+  border: var(--border-width-thin) solid var(--color-border-primary);
+  padding: var(--spacing-lg);
+}
+
+.feature-card h4 {
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-base);
+}
+
+.feature-card p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+/* ===================================
+   Sections
+   =================================== */
+.section {
+  margin-bottom: 60px;
+}
+
+.section:last-child {
+  margin-bottom: var(--spacing-2xl);
+}
+
+/* ===================================
+   Special Boxes
+   =================================== */
+.truth-box {
+  border: var(--border-width-medium) solid #00ff41;
+  padding: var(--spacing-2xl);
+  margin: 60px 0;
+  text-align: center;
+  background-color: #001a0d;
+}
+
+.truth-box h2 {
+  color: #00ffff;
+  margin-bottom: var(--spacing-lg);
+  letter-spacing: 2px;
+}
+
+.truth-box p {
+  color: #00cc33;
+  font-size: 1.1rem;
+  margin-bottom: var(--spacing-md);
+}
+
+.truth-box ul {
+  list-style: none;
+  text-align: left;
+  max-width: 800px;
+  margin: var(--spacing-lg) auto;
+  padding: 0;
+}
+
+.truth-box li {
+  margin: var(--spacing-sm) 0;
+  color: #00cc33;
+}
+
+.truth-box .emphasis {
+  color: #00ffff;
+  font-size: 1.3rem;
+  margin-top: var(--spacing-xl);
+  font-weight: bold;
+}
+
+/* ===================================
+   Documentation Footer
+   =================================== */
+.docs-footer {
+  border-top: var(--border-width-thin) solid var(--color-border-primary);
+  padding: var(--spacing-xl);
+  text-align: center;
+  color: var(--color-text-muted);
+  margin-top: 60px;
+  font-size: var(--font-size-small);
+}
+
+.docs-footer p {
+  margin: var(--spacing-xs) 0;
+  color: var(--color-text-muted);
+}
+
+.docs-footer a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 768px) {
+  .docs-container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: var(--spacing-lg);
+  }
+  
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .truth-box {
+    padding: var(--spacing-lg);
+  }
+  
+  .truth-box h2 {
+    font-size: 1.2rem;
+  }
+  
+  .truth-box p {
+    font-size: 1rem;
+  }
+  
+  .truth-box .emphasis {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: var(--spacing-md);
+  }
+  
+  .sidebar {
+    padding: var(--spacing-md);
+  }
+  
+  .feature-card {
+    padding: var(--spacing-md);
+  }
+}
+
+/* ===================================
+   Utility Classes
+   =================================== */
+.info-box ul {
+  margin-top: 15px;
+}
+
+.cyan-link {
+  color: #00ffff;
+}
+
+.back-to-home {
+  text-align: center;
+  padding: 40px;
+  margin: 40px 0;
+}
+
+/* ===================================
+   Print Styles
+   =================================== */
+@media print {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    max-width: 100%;
+  }
+  
+  .back-link {
+    display: none;
+  }
+  
+  .truth-box {
+    border: var(--border-width-thin) solid var(--color-text-primary);
+    background-color: transparent;
+    color: var(--color-text-primary);
+  }
+  
+  .truth-box h2,
+  .truth-box p,
+  .truth-box li,
+  .truth-box .emphasis {
+    color: var(--color-text-primary);
+  }
+}

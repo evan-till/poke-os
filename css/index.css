@@ -1,0 +1,260 @@
+/**
+ * Index Page Styles - Useless Bot
+ * Styles specific to the landing page
+ */
+
+/* ===================================
+   Layout
+   =================================== */
+.container {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+/* ===================================
+   Header
+   =================================== */
+.site-header {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.ascii-art {
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  white-space: pre;
+  font-family: monospace;
+  margin-bottom: var(--spacing-xl);
+}
+
+.tagline {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: var(--spacing-lg) 0;
+  border-left: var(--border-width-thick) solid var(--color-border-accent);
+  padding-left: var(--spacing-md);
+}
+
+/* ===================================
+   Navigation
+   =================================== */
+.main-nav {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-md) 0;
+  border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+.main-nav a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  margin: 0 var(--spacing-md) 0 0;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+  color: var(--color-link-hover);
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+.hero {
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero h1 {
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-lg);
+  color: #222;
+}
+
+.hero p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+/* ===================================
+   Badges
+   =================================== */
+.badges {
+  margin: var(--spacing-lg) 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.badge {
+  display: inline-block;
+  background-color: var(--color-bg-white);
+  border: var(--border-width-thin) solid var(--color-border-primary);
+  padding: var(--spacing-xs) 12px;
+  font-size: var(--font-size-tiny);
+  color: var(--color-text-muted);
+}
+
+/* ===================================
+   Metrics Grid
+   =================================== */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-lg);
+  margin: var(--spacing-2xl) 0;
+  padding: var(--spacing-xl) 0;
+  border-top: var(--border-width-thin) solid var(--color-border-primary);
+  border-bottom: var(--border-width-thin) solid var(--color-border-primary);
+}
+
+.metric {
+  text-align: center;
+}
+
+.metric-value {
+  font-size: 2rem;
+  color: var(--color-text-primary);
+  font-weight: bold;
+}
+
+.metric-label {
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+  font-size: 0.8rem;
+}
+
+/* ===================================
+   Features
+   =================================== */
+.features {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.feature {
+  border-left: var(--border-width-medium) solid var(--color-border-primary);
+  padding: var(--spacing-md) 0 var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-lg) 0;
+}
+
+.feature h3 {
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+  font-size: var(--font-size-base);
+}
+
+.feature p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ===================================
+   Call to Action
+   =================================== */
+.cta {
+  text-align: center;
+  margin: var(--spacing-2xl) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.cta .btn {
+  margin: var(--spacing-sm);
+}
+
+/* ===================================
+   Philosophy Box
+   =================================== */
+.philosophy-box {
+  border: var(--border-width-thin) solid var(--color-border-primary);
+  padding: var(--spacing-xl);
+  margin: var(--spacing-2xl) 0;
+  background-color: var(--color-bg-white);
+}
+
+.philosophy-box h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.philosophy-box p {
+  margin-bottom: var(--spacing-md);
+}
+
+.philosophy-box strong {
+  display: block;
+  text-align: center;
+  margin-top: var(--spacing-lg);
+}
+
+/* ===================================
+   Footer
+   =================================== */
+.site-footer {
+  border-top: var(--border-width-thin) solid var(--color-border-primary);
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  margin-top: var(--spacing-3xl);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-small);
+}
+
+.site-footer p {
+  margin: var(--spacing-xs) 0;
+  color: var(--color-text-muted);
+}
+
+/* ===================================
+   Sections
+   =================================== */
+.section {
+  margin: var(--spacing-3xl) 0;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+  
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  
+  .metrics {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+  }
+  
+  .cta {
+    flex-direction: column;
+  }
+  
+  .cta .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .ascii-art {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .badges {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .badge {
+    width: 100%;
+  }
+}

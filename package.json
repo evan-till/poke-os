@@ -1,0 +1,42 @@
+{
+  "name": "poke-os",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Poke OS - Windows 95 inspired retro desktop interface for Pokemon card collectors",
+  "keywords": [
+    "pokemon",
+    "retro",
+    "windows95",
+    "desktop",
+    "terminal",
+    "trainer",
+    "collection",
+    "interactive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poke-os/poke-os"
+  },
+  "license": "MIT",
+  "author": "Poke Labs",
+  "scripts": {
+    "build": "echo \"No build step configured\"",
+    "test": "vitest run --passWithNoTests",
+    "test:coverage": "vitest run --coverage --passWithNoTests",
+    "lint": "eslint js scripts --ext .js,.mjs --max-warnings 0",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "clean": "rm -rf dist coverage",
+    "dev": "npx http-server . -p 8000 --cors"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "vitest": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

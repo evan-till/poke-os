@@ -1,0 +1,1580 @@
+/* ===================================
+   Windows 95 Desktop Interface Styles
+   =================================== */
+
+@font-face {
+  font-family: 'Microsoft Sans Serif';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Microsoft Sans Serif'), url('../font/micross.woff') format('woff');
+  font-display: swap;
+}
+
+:root {
+  --win95-teal: #008080;
+  --win95-gray: #c0c0c0;
+  --win95-dark-gray: #808080;
+  --win95-black: #000000;
+  --win95-white: #ffffff;
+  --win95-blue: #000080;
+  --win95-blue-title: #000080;
+  --win95-button-shadow: #000000;
+  --win95-button-highlight: #ffffff;
+  --taskbar-height: 38px;
+  --win98-scrollbar-track: #d4d0c8;
+  --win98-scrollbar-track-inner: #efefef;
+  --win98-scrollbar-face: #c0c0c0;
+  --win98-scrollbar-inner-shadow: #dfdfdf;
+  --win95-border-raised: inset -1px -1px #0a0a0a, inset 1px 1px #ffffff, inset -2px -2px #808080, inset 2px 2px #dfdfdf;
+  --win95-border-sunken: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Microsoft Sans Serif', 'MS Sans Serif', Tahoma, Arial, sans-serif;
+  font-size: 11px;
+  overflow: hidden;
+  background: var(--win95-teal);
+  height: 100vh;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><defs><filter id="shadow"><feDropShadow dx="1" dy="1" stdDeviation="0.5" flood-color="black" flood-opacity="0.5"/></filter></defs><g filter="url(%23shadow)"><path fill="white" stroke="black" stroke-width="1.5" d="M 5 5 L 5 28 L 12 21 L 16 33 L 21 31 L 17 19 L 25 19 Z"/><path fill="%234da6ff" d="M 7 7 L 7 24 L 13 18 L 15.5 27 L 18.5 25.5 L 16 17 L 22 17 Z"/></g></svg>') 5 5, auto;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ===================================
+   Desktop
+   =================================== */
+.desktop {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - var(--taskbar-height));
+  background: var(--win95-teal);
+  overflow: hidden;
+  background-image: url('../assets/wp2808020.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Desktop Icons */
+.desktop-icons {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  z-index: 1;
+  max-height: calc(100vh - var(--taskbar-height) - 30px);
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  padding: 5px;
+  cursor: pointer;
+  color: var(--win95-white);
+  text-align: center;
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus {
+  background: rgba(0, 0, 128, 0.5);
+  outline: 1px dotted var(--win95-white);
+}
+
+.desktop-icon img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
+}
+
+.icon-label {
+  font-size: 10px;
+  line-height: 1.15;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.85);
+  word-wrap: break-word;
+  font-weight: bold;
+}
+
+/* Build String (Windows Neptune style) */
+.build-string {
+  position: absolute;
+  bottom: calc(var(--taskbar-height) + 8px);
+  right: 8px;
+  color: #ffffff;
+  font-family: 'Microsoft Sans Serif', 'MS Sans Serif', Arial, sans-serif;
+  font-size: 13px;
+  line-height: 1.3;
+  text-align: right;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.build-string-line1 {
+  font-weight: bold;
+  font-synthesis: weight;
+}
+
+.build-string-line2 {
+  font-weight: 400;
+}
+
+/* ===================================
+   Windows
+   =================================== */
+.window {
+  position: absolute;
+  background: var(--win95-gray);
+  border-left: 2px solid var(--win95-button-highlight);
+  border-top: 2px solid var(--win95-button-highlight);
+  border-right: 2px solid var(--win95-button-shadow);
+  border-bottom: 2px solid var(--win95-button-shadow);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  min-width: 250px;
+  max-height: calc(100vh - (var(--taskbar-height) + 20px));
+  z-index: 10;
+  display: none;
+  overflow: hidden;
+}
+
+.window.active {
+  z-index: 100;
+}
+
+.window.minimized {
+  display: none !important;
+}
+
+.window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - var(--taskbar-height) - 4px) !important;
+  box-shadow: none !important;
+  max-height: none !important;
+}
+
+/* Title Bar */
+.title-bar {
+  background: linear-gradient(90deg, var(--win95-blue-title), #1084d0);
+  color: var(--win95-white);
+  padding: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  font-family: 'Microsoft Sans Serif', 'MS Sans Serif', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  height: 18px;
+  box-sizing: content-box;
+  line-height: 1;
+}
+
+.window:not(.active) .title-bar {
+  background: var(--win95-dark-gray);
+}
+
+.title-bar-text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 2px;
+  font-family: 'Microsoft Sans Serif', 'MS Sans Serif', Arial, sans-serif;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.title-bar-text img {
+  width: 16px;
+  height: 16px;
+}
+
+.title-bar-controls {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  padding-right: 2px;
+}
+
+.title-bar-btn {
+  width: 16px;
+  height: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  flex-shrink: 0;
+}
+
+.minimize-btn {
+  background: url('../icons/minimize.png') center center no-repeat;
+  background-size: 16px 16px;
+}
+
+.maximize-btn {
+  background: url('../icons/fullscreen.png') center center no-repeat;
+  background-size: 16px 16px;
+}
+
+.close-btn {
+  background: url('../icons/close.png') center center no-repeat;
+  background-size: 16px 16px;
+}
+
+.title-bar-btn:active {
+  opacity: 0.8;
+}
+
+/* My Computer hero typography inspired by the classic Win95 welcome screen */
+#welcome-window .welcome95-title {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 0.95;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+#welcome-window .welcome95-subtitle {
+  font-family: 'Microsoft Sans Serif', 'MS Sans Serif', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  margin-bottom: 0;
+  color: #990000;
+}
+
+/* Window Content */
+.window-body {
+  padding: 8px;
+  background: var(--win95-gray);
+  overflow-y: auto;
+  overflow-x: hidden;
+  color: var(--win95-black);
+  max-height: calc(100% - 50px);
+}
+
+.window-body::-webkit-scrollbar {
+  width: 16px;
+}
+
+.window-body::-webkit-scrollbar-track {
+  background: var(--win95-white);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+.window-body::-webkit-scrollbar-thumb {
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.window-body::-webkit-scrollbar-button {
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.window-body::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.window-body::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.window-body h1,
+.window-body h2,
+.window-body h3 {
+  font-family: Georgia, serif;
+  font-style: italic;
+  margin-bottom: 8px;
+  color: var(--win95-black);
+}
+
+.window-body h1 { font-size: 16px; }
+.window-body h2 { font-size: 14px; }
+.window-body h3 { font-size: 12px; }
+
+.window-body p {
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.window-body a {
+  color: var(--win95-blue);
+  text-decoration: underline;
+}
+
+.window-body a:hover {
+  color: #0000ff;
+}
+
+/* ===================================
+   Taskbar
+   =================================== */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--taskbar-height);
+  background: var(--win95-gray);
+  border-top: 2px solid var(--win95-button-highlight);
+  display: flex;
+  align-items: center;
+  padding: 2px 3px;
+  gap: 3px;
+  z-index: 1000;
+}
+
+/* Start Button */
+.start-button {
+  height: auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  display: block;
+  cursor: pointer;
+  line-height: 0;
+  position: relative;
+}
+
+.start-button img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.start-button:active,
+.start-button.active {
+  transform: none;
+}
+
+.start-button:active img,
+.start-button.active img {
+  transform: translate(1px, 1px);
+  filter: brightness(0.96);
+}
+
+.start-button:active::after,
+.start-button.active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+  border-right: 1px solid var(--win95-button-highlight);
+  border-bottom: 1px solid var(--win95-button-highlight);
+  pointer-events: none;
+}
+
+/* Task Buttons */
+.task-list {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  overflow-x: auto;
+  height: 32px;
+}
+
+.task-button {
+  height: 32px;
+  min-width: 120px;
+  max-width: 180px;
+  padding: 0 8px;
+  background: var(--win95-gray);
+  border-left: 2px solid var(--win95-button-highlight);
+  border-top: 2px solid var(--win95-button-highlight);
+  border-right: 2px solid var(--win95-button-shadow);
+  border-bottom: 2px solid var(--win95-button-shadow);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-button.active {
+  border-left: 2px solid var(--win95-button-shadow);
+  border-top: 2px solid var(--win95-button-shadow);
+  border-right: 2px solid var(--win95-button-highlight);
+  border-bottom: 2px solid var(--win95-button-highlight);
+  padding-left: 9px;
+  padding-top: 1px;
+  padding-right: 7px;
+}
+
+.task-button img {
+  width: 16px;
+  height: 16px;
+}
+
+/* System Tray */
+.system-tray {
+  height: 32px;
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+  border-right: 1px solid var(--win95-button-highlight);
+  border-bottom: 1px solid var(--win95-button-highlight);
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.tray-icons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tray-icon {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
+}
+
+.tray-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--win95-dark-gray);
+  border-right: 1px solid var(--win95-button-highlight);
+}
+
+.clock {
+  font-family: 'Microsoft Sans Serif', 'MS Sans Serif', 'Tahoma', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  display: inline-block;
+  transform: translateY(1px);
+}
+
+/* ===================================
+   Start Menu
+   =================================== */
+.start-menu {
+  position: fixed;
+  bottom: calc(var(--taskbar-height) + 3px);
+  left: 3px;
+  width: 280px;
+  background: var(--win95-gray);
+  border-left: 2px solid var(--win95-button-highlight);
+  border-top: 2px solid var(--win95-button-highlight);
+  border-right: 2px solid var(--win95-button-shadow);
+  border-bottom: 2px solid var(--win95-button-shadow);
+  display: none;
+  z-index: 2000;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.start-menu.show {
+  display: block;
+}
+
+.start-menu-banner {
+  background: linear-gradient(180deg, var(--win95-blue-title), #1084d0);
+  color: var(--win95-white);
+  padding: 8px 4px;
+  font-weight: bold;
+  font-size: 20px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  float: left;
+  width: 28px;
+  letter-spacing: 2px;
+}
+
+.start-menu-items {
+  margin-left: 28px;
+  padding: 0 2px;
+  min-height: fit-content;
+}
+
+.start-menu-item {
+  padding: 4px 24px 4px 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  font-size: 11px;
+}
+
+.start-menu-item:hover {
+  background: var(--win95-blue-title);
+  color: var(--win95-white);
+}
+
+.start-menu-item img {
+  width: 16px;
+  height: 16px;
+}
+
+.start-menu-separator {
+  height: 0;
+  border-top: 1px solid var(--win95-dark-gray);
+  border-bottom: 1px solid var(--win95-button-highlight);
+  margin: 2px 0;
+}
+
+.start-menu-item.has-submenu::after {
+  content: '▶';
+  position: absolute;
+  right: 4px;
+  font-size: 8px;
+}
+
+/* ===================================
+   Buttons & Controls
+   =================================== */
+.win95-button {
+  padding: 4px 12px;
+  background: var(--win95-gray);
+  border-left: 2px solid var(--win95-button-highlight);
+  border-top: 2px solid var(--win95-button-highlight);
+  border-right: 2px solid var(--win95-button-shadow);
+  border-bottom: 2px solid var(--win95-button-shadow);
+  cursor: pointer;
+  font-size: 11px;
+  display: inline-block;
+  margin: 4px 2px;
+}
+
+.win95-button:active {
+  border-left: 2px solid var(--win95-button-shadow);
+  border-top: 2px solid var(--win95-button-shadow);
+  border-right: 2px solid var(--win95-button-highlight);
+  border-bottom: 2px solid var(--win95-button-highlight);
+  padding-left: 13px;
+  padding-top: 5px;
+  padding-right: 11px;
+  padding-bottom: 3px;
+}
+
+/* ===================================
+   Window Specific Content Styles
+   =================================== */
+.window-body code {
+  background: var(--win95-white);
+  border: 1px solid var(--win95-dark-gray);
+  padding: 2px 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+}
+
+.window-body pre {
+  background: var(--win95-white);
+  border: 1px solid var(--win95-dark-gray);
+  padding: 8px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+}
+
+.window-body ul,
+.window-body ol {
+  margin-left: 20px;
+  margin-bottom: 8px;
+}
+
+.window-body li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+/* Fieldset - Windows 95 groupbox style */
+.fieldset {
+  border: 2px groove var(--win95-button-highlight);
+  padding: 12px 8px 8px 8px;
+  margin: 8px 0;
+  position: relative;
+}
+
+.fieldset-legend {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: var(--win95-gray);
+  padding: 0 4px;
+  font-size: 11px;
+}
+
+/* Status Bar */
+.status-bar {
+  height: 20px;
+  background: var(--win95-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  gap: 2px;
+  font-size: 10px;
+}
+
+.status-bar-field {
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+  border-right: 1px solid var(--win95-button-highlight);
+  border-bottom: 1px solid var(--win95-button-highlight);
+  padding: 2px 4px;
+  flex: 1;
+}
+
+/* Resize Handle */
+.window-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+  background: linear-gradient(135deg, 
+    transparent 0%, 
+    transparent 45%, 
+    var(--win95-dark-gray) 45%, 
+    var(--win95-dark-gray) 50%, 
+    transparent 50%, 
+    transparent 55%,
+    var(--win95-dark-gray) 55%, 
+    var(--win95-dark-gray) 60%, 
+    transparent 60%,
+    transparent 65%,
+    var(--win95-dark-gray) 65%, 
+    var(--win95-dark-gray) 70%, 
+    transparent 70%
+  );
+  z-index: 10;
+}
+
+.window.maximized .window-resize-handle {
+  display: none;
+}
+
+/* ===================================
+   Responsive
+   =================================== */
+@media (max-width: 768px) {
+  .desktop-icons {
+    gap: 15px;
+  }
+  
+  .desktop-icon {
+    width: 60px;
+  }
+  
+  .window {
+    min-width: 200px;
+  }
+  
+  .task-button {
+    min-width: 80px;
+    max-width: 120px;
+  }
+}
+
+/* ===================================
+   Windows 95 Specific Details
+   =================================== */
+
+/* Title bar gradient for active windows */
+.window.active .title-bar {
+  background: linear-gradient(90deg, #000080, #1084d0);
+}
+
+/* Add "pressed" state visual feedback */
+.desktop-icon:active {
+  transform: translate(1px, 1px);
+}
+
+/* Hover effect for buttons */
+.win95-button:hover {
+  background: #d4d0c8;
+}
+
+/* System tray icon animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Add visual depth to taskbar */
+.taskbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,255,255,0.3) 20%, 
+    rgba(255,255,255,0.3) 80%, 
+    transparent 100%
+  );
+}
+
+/* Desktop icon selection box styling */
+.desktop-icon.selected {
+  background: rgba(0, 0, 128, 0.7);
+  outline: 1px dotted var(--win95-white);
+  outline-offset: 2px;
+}
+
+/* ===================================
+   Bot Assistant (Clippy-style)
+   =================================== */
+.bot-assistant {
+  position: fixed;
+  bottom: calc(var(--taskbar-height) + 100px);
+  right: 20px;
+  z-index: 9999;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.bot-assistant.closing {
+  animation: slideOut 0.3s ease-out;
+}
+
+.bot-assistant-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.bot-assistant-avatar {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  animation: bounce 2s infinite;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.bot-assistant-bubble {
+  position: relative;
+  background: var(--win95-gray);
+  border-left: 2px solid var(--win95-button-highlight);
+  border-top: 2px solid var(--win95-button-highlight);
+  border-right: 2px solid var(--win95-button-shadow);
+  border-bottom: 2px solid var(--win95-button-shadow);
+  padding: 12px 30px 12px 12px;
+  max-width: 250px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.bot-assistant-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 0;
+  border-color: transparent var(--win95-button-shadow) transparent transparent;
+}
+
+.bot-assistant-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 8px 8px 0;
+  border-color: transparent var(--win95-gray) transparent transparent;
+  z-index: 1;
+}
+
+.bot-assistant-message {
+  margin: 0;
+  color: var(--win95-black);
+}
+
+.bot-assistant-close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--win95-black);
+}
+
+.bot-assistant-close:hover {
+  background: #d4d0c8;
+}
+
+.bot-assistant-close:active {
+  border-left: 1px solid var(--win95-button-shadow);
+  border-top: 1px solid var(--win95-button-shadow);
+  border-right: 1px solid var(--win95-button-highlight);
+  border-bottom: 1px solid var(--win95-button-highlight);
+}
+
+@media (max-width: 768px) {
+  .bot-assistant {
+    bottom: 50px;
+    right: 10px;
+  }
+  
+  .bot-assistant-avatar {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .bot-assistant-bubble {
+    max-width: 200px;
+    font-size: 10px;
+  }
+}
+
+/* ===================================
+   File Explorer Styles
+   =================================== */
+.explorer-folder {
+  padding: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #000;
+  background: white;
+  transition: none;
+}
+
+.explorer-folder:hover {
+  background: #000080 !important;
+  color: white !important;
+}
+
+.explorer-folder.selected {
+  background: #000080 !important;
+  color: white !important;
+}
+
+.explorer-menu-bar {
+  display: flex;
+  gap: 2px;
+  padding: 2px 4px;
+  border-bottom: 1px solid #808080;
+  background: #c0c0c0;
+}
+
+.explorer-menu-item {
+  background: transparent;
+  border: 1px solid transparent;
+  font-size: 11px;
+  padding: 2px 7px;
+  cursor: default;
+}
+
+.explorer-menu-item:hover {
+  border: 1px outset #fff;
+}
+
+.browser-menu-trigger {
+  user-select: none;
+}
+
+.browser-menu-trigger.active {
+  background: #000080;
+  color: #fff;
+}
+
+.browser-dropdown-menu {
+  position: fixed;
+  min-width: 210px;
+  background: #c0c0c0;
+  border-left: 2px solid #fff;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+  padding: 2px;
+  z-index: 12000;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.browser-dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: #000;
+}
+
+.browser-dropdown-item:hover {
+  background: #000080;
+  color: #fff;
+}
+
+.browser-dropdown-separator {
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #fff;
+  margin: 2px 3px;
+  height: 0;
+}
+
+.browser-dropdown-shortcut {
+  color: #4e4e4e;
+}
+
+.browser-dropdown-item:hover .browser-dropdown-shortcut {
+  color: #d6d6ff;
+}
+
+.explorer-toolbar {
+  background: #c0c0c0;
+  padding: 4px;
+  border-bottom: 1px solid #808080;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.explorer-tool-btn {
+  width: 24px;
+  height: 24px;
+  border: 1px outset #fff;
+  background: #c0c0c0;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explorer-tool-btn:active {
+  border: 1px inset #808080;
+}
+
+.explorer-tool-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.explorer-tool-btn:disabled {
+  opacity: 0.5;
+}
+
+.explorer-toolbar-sep {
+  width: 1px;
+  height: 20px;
+  margin: 0 2px;
+  background: #808080;
+  border-right: 1px solid #fff;
+}
+
+.explorer-address-label {
+  font-size: 11px;
+  padding-left: 2px;
+}
+
+.explorer-address-bar {
+  flex: 1;
+  background: white;
+  border: 1px inset #808080;
+  padding: 2px 4px;
+  font-size: 11px;
+  min-width: 140px;
+}
+
+.explorer-main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.explorer-sidebar {
+  width: 200px;
+  border-right: 1px solid #808080;
+  overflow-y: auto;
+  background: white;
+  padding: 6px;
+}
+
+.explorer-sidebar-title {
+  font-weight: bold;
+  font-size: 11px;
+  margin: 0 0 8px;
+  color: #303030;
+}
+
+.explorer-folders-label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.explorer-content-pane {
+  flex: 1;
+  overflow-y: auto;
+  background: white;
+  padding: 0;
+}
+
+.explorer-file-header {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 90px 90px 110px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #c0c0c0;
+  border-bottom: 1px solid #808080;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.explorer-file-header span {
+  padding: 4px 8px;
+  border-right: 1px solid #a0a0a0;
+}
+
+.explorer-file-header span:last-child {
+  border-right: none;
+}
+
+.explorer-file-item {
+  padding: 6px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  font-size: 11px;
+  color: #000;
+  background: white;
+  transition: none;
+}
+
+.explorer-file-item:hover {
+  background: #000080 !important;
+}
+
+.explorer-file-item.selected {
+  background: #000080 !important;
+}
+
+.explorer-file-item:hover * {
+  color: white !important;
+}
+
+.explorer-file-item.selected * {
+  color: white !important;
+}
+
+.explorer-file-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 90px 90px 110px;
+  align-items: center;
+  gap: 0;
+}
+
+.explorer-file-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.explorer-file-name-wrap img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.explorer-file-name {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.explorer-file-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 8px;
+}
+
+.file-viewer-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  max-height: 80vh;
+  background: #c0c0c0;
+  border: 2px outset #fff;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-viewer-titlebar {
+  background: linear-gradient(to right, #000080, #1084d0);
+  padding: 4px 8px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+}
+
+.file-viewer-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  background: white;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: #000;
+}
+
+.file-viewer-statusbar {
+  background: #c0c0c0;
+  padding: 4px 8px;
+  border-top: 1px solid #808080;
+  font-size: 10px;
+  color: #000;
+}
+
+/* Windows 95 scrollbar styling for file viewer */
+.file-viewer-content::-webkit-scrollbar {
+  width: 16px;
+}
+
+.file-viewer-content::-webkit-scrollbar-track {
+  background: var(--win95-white);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+.file-viewer-content::-webkit-scrollbar-thumb {
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.file-viewer-content::-webkit-scrollbar-button {
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+.file-viewer-content::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.file-viewer-content::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Windows 95 scrollbar styling for file explorer content areas */
+#explorer-content::-webkit-scrollbar,
+.explorer-sidebar::-webkit-scrollbar {
+  width: 16px;
+}
+
+#explorer-content::-webkit-scrollbar-track,
+.explorer-sidebar::-webkit-scrollbar-track {
+  background: var(--win95-white);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+#explorer-content::-webkit-scrollbar-thumb,
+.explorer-sidebar::-webkit-scrollbar-thumb {
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+#explorer-content::-webkit-scrollbar-button,
+.explorer-sidebar::-webkit-scrollbar-button {
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+#explorer-content::-webkit-scrollbar-button:vertical:decrement,
+.explorer-sidebar::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#explorer-content::-webkit-scrollbar-button:vertical:increment,
+.explorer-sidebar::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Windows 95 scrollbar styling for browser pages */
+#browser-home-page::-webkit-scrollbar,
+#browser-page-aigallery::-webkit-scrollbar,
+#browser-page-promptkingdom::-webkit-scrollbar,
+#browser-page-contentfarm::-webkit-scrollbar,
+#browser-page-webring::-webkit-scrollbar,
+#browser-page-slophub::-webkit-scrollbar,
+#browser-page-slopnews::-webkit-scrollbar,
+#browser-page-dailyslop::-webkit-scrollbar,
+#browser-page-slopipedia::-webkit-scrollbar,
+#browser-page-slopmaxxing::-webkit-scrollbar,
+#browser-page-slopchan::-webkit-scrollbar {
+  width: 16px;
+}
+
+#browser-home-page::-webkit-scrollbar-track,
+#browser-page-aigallery::-webkit-scrollbar-track,
+#browser-page-promptkingdom::-webkit-scrollbar-track,
+#browser-page-contentfarm::-webkit-scrollbar-track,
+#browser-page-webring::-webkit-scrollbar-track,
+#browser-page-slophub::-webkit-scrollbar-track,
+#browser-page-slopnews::-webkit-scrollbar-track,
+#browser-page-dailyslop::-webkit-scrollbar-track,
+#browser-page-slopipedia::-webkit-scrollbar-track,
+#browser-page-slopmaxxing::-webkit-scrollbar-track,
+#browser-page-slopchan::-webkit-scrollbar-track {
+  background: var(--win95-white);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+#browser-home-page::-webkit-scrollbar-thumb,
+#browser-page-aigallery::-webkit-scrollbar-thumb,
+#browser-page-promptkingdom::-webkit-scrollbar-thumb,
+#browser-page-contentfarm::-webkit-scrollbar-thumb,
+#browser-page-webring::-webkit-scrollbar-thumb,
+#browser-page-slophub::-webkit-scrollbar-thumb,
+#browser-page-slopnews::-webkit-scrollbar-thumb,
+#browser-page-dailyslop::-webkit-scrollbar-thumb,
+#browser-page-slopipedia::-webkit-scrollbar-thumb,
+#browser-page-slopmaxxing::-webkit-scrollbar-thumb,
+#browser-page-slopchan::-webkit-scrollbar-thumb {
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+#browser-home-page::-webkit-scrollbar-button,
+#browser-page-aigallery::-webkit-scrollbar-button,
+#browser-page-promptkingdom::-webkit-scrollbar-button,
+#browser-page-contentfarm::-webkit-scrollbar-button,
+#browser-page-webring::-webkit-scrollbar-button,
+#browser-page-slophub::-webkit-scrollbar-button,
+#browser-page-slopnews::-webkit-scrollbar-button,
+#browser-page-dailyslop::-webkit-scrollbar-button,
+#browser-page-slopipedia::-webkit-scrollbar-button,
+#browser-page-slopmaxxing::-webkit-scrollbar-button,
+#browser-page-slopchan::-webkit-scrollbar-button {
+  height: 16px;
+  background: var(--win95-gray);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+}
+
+#browser-home-page::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-aigallery::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-promptkingdom::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-contentfarm::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-webring::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-slophub::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-slopnews::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-dailyslop::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-slopipedia::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-slopmaxxing::-webkit-scrollbar-button:vertical:decrement,
+#browser-page-slopchan::-webkit-scrollbar-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#browser-home-page::-webkit-scrollbar-button:vertical:increment,
+#browser-page-aigallery::-webkit-scrollbar-button:vertical:increment,
+#browser-page-promptkingdom::-webkit-scrollbar-button:vertical:increment,
+#browser-page-contentfarm::-webkit-scrollbar-button:vertical:increment,
+#browser-page-webring::-webkit-scrollbar-button:vertical:increment,
+#browser-page-slophub::-webkit-scrollbar-button:vertical:increment,
+#browser-page-slopnews::-webkit-scrollbar-button:vertical:increment,
+#browser-page-dailyslop::-webkit-scrollbar-button:vertical:increment,
+#browser-page-slopipedia::-webkit-scrollbar-button:vertical:increment,
+#browser-page-slopmaxxing::-webkit-scrollbar-button:vertical:increment,
+#browser-page-slopchan::-webkit-scrollbar-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.window-body::-webkit-scrollbar,
+.file-viewer-content::-webkit-scrollbar,
+#explorer-content::-webkit-scrollbar,
+.explorer-sidebar::-webkit-scrollbar,
+#browser-home-page::-webkit-scrollbar,
+#browser-page-aigallery::-webkit-scrollbar,
+#browser-page-promptkingdom::-webkit-scrollbar,
+#browser-page-contentfarm::-webkit-scrollbar,
+#browser-page-webring::-webkit-scrollbar,
+#browser-page-slophub::-webkit-scrollbar,
+#browser-page-slopnews::-webkit-scrollbar,
+#browser-page-dailyslop::-webkit-scrollbar,
+#browser-page-slopipedia::-webkit-scrollbar,
+#browser-page-slopmaxxing::-webkit-scrollbar,
+#browser-page-slopchan::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.window-body::-webkit-scrollbar-track,
+.file-viewer-content::-webkit-scrollbar-track,
+#explorer-content::-webkit-scrollbar-track,
+.explorer-sidebar::-webkit-scrollbar-track,
+#browser-home-page::-webkit-scrollbar-track,
+#browser-page-aigallery::-webkit-scrollbar-track,
+#browser-page-promptkingdom::-webkit-scrollbar-track,
+#browser-page-contentfarm::-webkit-scrollbar-track,
+#browser-page-webring::-webkit-scrollbar-track,
+#browser-page-slophub::-webkit-scrollbar-track,
+#browser-page-slopnews::-webkit-scrollbar-track,
+#browser-page-dailyslop::-webkit-scrollbar-track,
+#browser-page-slopipedia::-webkit-scrollbar-track,
+#browser-page-slopmaxxing::-webkit-scrollbar-track,
+#browser-page-slopchan::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, var(--win98-scrollbar-track-inner) 0, var(--win98-scrollbar-track) 3px, var(--win98-scrollbar-track) 100%);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+  border-right: 1px solid var(--win95-button-highlight);
+  border-bottom: 1px solid var(--win95-button-highlight);
+}
+
+.window-body::-webkit-scrollbar-thumb,
+.file-viewer-content::-webkit-scrollbar-thumb,
+#explorer-content::-webkit-scrollbar-thumb,
+.explorer-sidebar::-webkit-scrollbar-thumb,
+#browser-home-page::-webkit-scrollbar-thumb,
+#browser-page-aigallery::-webkit-scrollbar-thumb,
+#browser-page-promptkingdom::-webkit-scrollbar-thumb,
+#browser-page-contentfarm::-webkit-scrollbar-thumb,
+#browser-page-webring::-webkit-scrollbar-thumb,
+#browser-page-slophub::-webkit-scrollbar-thumb,
+#browser-page-slopnews::-webkit-scrollbar-thumb,
+#browser-page-dailyslop::-webkit-scrollbar-thumb,
+#browser-page-slopipedia::-webkit-scrollbar-thumb,
+#browser-page-slopmaxxing::-webkit-scrollbar-thumb,
+#browser-page-slopchan::-webkit-scrollbar-thumb {
+  background: var(--win98-scrollbar-face);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win98-scrollbar-inner-shadow), inset -1px -1px 0 var(--win95-dark-gray);
+}
+
+.window-body::-webkit-scrollbar-button,
+.file-viewer-content::-webkit-scrollbar-button,
+#explorer-content::-webkit-scrollbar-button,
+.explorer-sidebar::-webkit-scrollbar-button,
+#browser-home-page::-webkit-scrollbar-button,
+#browser-page-aigallery::-webkit-scrollbar-button,
+#browser-page-promptkingdom::-webkit-scrollbar-button,
+#browser-page-contentfarm::-webkit-scrollbar-button,
+#browser-page-webring::-webkit-scrollbar-button,
+#browser-page-slophub::-webkit-scrollbar-button,
+#browser-page-slopnews::-webkit-scrollbar-button,
+#browser-page-dailyslop::-webkit-scrollbar-button,
+#browser-page-slopipedia::-webkit-scrollbar-button,
+#browser-page-slopmaxxing::-webkit-scrollbar-button,
+#browser-page-slopchan::-webkit-scrollbar-button {
+  width: 16px;
+  height: 16px;
+  background-color: var(--win98-scrollbar-face);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win98-scrollbar-inner-shadow), inset -1px -1px 0 var(--win95-dark-gray);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.window-body::-webkit-scrollbar-corner,
+.file-viewer-content::-webkit-scrollbar-corner,
+#explorer-content::-webkit-scrollbar-corner,
+.explorer-sidebar::-webkit-scrollbar-corner,
+#browser-home-page::-webkit-scrollbar-corner,
+#browser-page-aigallery::-webkit-scrollbar-corner,
+#browser-page-promptkingdom::-webkit-scrollbar-corner,
+#browser-page-contentfarm::-webkit-scrollbar-corner,
+#browser-page-webring::-webkit-scrollbar-corner,
+#browser-page-slophub::-webkit-scrollbar-corner,
+#browser-page-slopnews::-webkit-scrollbar-corner,
+#browser-page-dailyslop::-webkit-scrollbar-corner,
+#browser-page-slopipedia::-webkit-scrollbar-corner,
+#browser-page-slopmaxxing::-webkit-scrollbar-corner,
+#browser-page-slopchan::-webkit-scrollbar-corner {
+  background: var(--win98-scrollbar-face);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}
+
+/* Photoslop uses both horizontal and vertical scrollbars often, so keep explicit rules scoped here. */
+#photoslop-scroll-area::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-track {
+  background: linear-gradient(90deg, var(--win98-scrollbar-track-inner) 0, var(--win98-scrollbar-track) 3px, var(--win98-scrollbar-track) 100%);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+  border-right: 1px solid var(--win95-button-highlight);
+  border-bottom: 1px solid var(--win95-button-highlight);
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-thumb {
+  background: var(--win98-scrollbar-face);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win98-scrollbar-inner-shadow), inset -1px -1px 0 var(--win95-dark-gray);
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-button {
+  width: 16px;
+  height: 16px;
+  background-color: var(--win98-scrollbar-face);
+  border-left: 1px solid var(--win95-button-highlight);
+  border-top: 1px solid var(--win95-button-highlight);
+  border-right: 1px solid var(--win95-button-shadow);
+  border-bottom: 1px solid var(--win95-button-shadow);
+  box-shadow: inset 1px 1px 0 var(--win98-scrollbar-inner-shadow), inset -1px -1px 0 var(--win95-dark-gray);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 2 L1 6 L7 6 Z" fill="black"/></svg>');
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M4 6 L1 2 L7 2 Z" fill="black"/></svg>');
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M2 4 L6 1 L6 7 Z" fill="black"/></svg>');
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-button:single-button:horizontal:increment {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8"><path d="M6 4 L2 1 L2 7 Z" fill="black"/></svg>');
+}
+
+#photoslop-scroll-area::-webkit-scrollbar-corner {
+  background: var(--win98-scrollbar-face);
+  border-left: 1px solid var(--win95-dark-gray);
+  border-top: 1px solid var(--win95-dark-gray);
+}

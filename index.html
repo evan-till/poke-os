@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Poke OS - A retro desktop built for Pokemon Collectibles news, market tracking, and hobby nostalgia.">
+    <meta name="keywords" content="Poke OS, Pokemon Collectibles, trading cards, retro desktop, market tracker, Pokemon hobby, collector news">
+    <meta name="author" content="Poke Labs Research Division">
+    <meta property="og:title" content="Poke OS - Pokemon Collectibles Market Hub">
+    <meta property="og:description" content="A nostalgic OS experience tailored to Pokemon Collectibles lore, graded card market shifts, and hobby drop alerts.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pokeos.fun">
+    <title>Poke OS - Pokemon Collectibles Market Hub</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="css/win95.css">
+    <style>
+        /* Boot screen */
+        #boot-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000000;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            z-index: 9999;
+            font-family: 'Courier New', monospace;
+            animation: fadeOut 0.5s ease-in 3.5s forwards;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        
+        #boot-screen .logo-container {
+            text-align: left;
+            margin-bottom: 24px;
+        }
+
+        #boot-screen .boot-logo {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 320px;
+            height: auto;
+            pointer-events: none;
+            opacity: 0.95;
+        }
+        
+        #boot-screen .logo-container h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: normal;
+            letter-spacing: 8px;
+        }
+        
+        #boot-screen pre {
+            font-size: 12px;
+            line-height: 1.2;
+            text-align: left;
+            margin: 0;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 0 2px #FFFFFF;
+        }
+        
+        #boot-screen .system-info {
+            margin-top: 40px;
+            text-align: left;
+            font-size: 14px;
+            width: 100%;
+            max-width: 800px;
+        }
+        
+        #boot-screen .system-info p {
+            margin: 5px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        #boot-screen .loading-dots {
+            display: inline-block;
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60% { content: '...'; }
+            80%, 100% { content: ''; }
+        }
+        
+        #boot-screen .blink {
+            animation: blink-anim 1s step-end infinite;
+        }
+        
+        @keyframes blink-anim {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Windows 95 Boot Screen -->
+    <div id="boot-screen">
+        <img class="boot-logo" src="assets/epa.png" alt="EPA Logo">
+        <div class="logo-container">
+            <h1>POKE BIOS v1.0.0</h1>
+            <pre>
+    ____   ____  __ __ ______     ____  _____
+   / __ \ / __ \/ //_// ____/    / __ \/ ___/
+  / /_/ // / / / ,<  / __/      / / / /\__ \
+ / ____// /_/ / /| |/ /___     / /_/ /___/ /
+/_/     \____/_/ |_/_____/     \____//____/
+                                          
+    Pokemon Operating System
+    Market Intelligence Engine v1.0
+
+         Created by @Poke_SYS
+            </pre>
+        </div>
+        
+        <div class="system-info">
+            <p>Poke OS Retro Build 1.0.0</p>
+            <p>Poke Labs Market Engine - Collector Edition</p>
+            <p>Poke OS v1.0.0 (Market Alpha)</p>
+            <p>(C) Copyright Poke Labs, Collectibles Not Guaranteed</p>
+            <p style="margin-top: 20px; color: #ffff00;">WARNING: Market alerts are based on limited supply signals</p>
+            <p style="margin-top: 8px; color: #ff5555;">RARE CARD SURGE DETECTED - Top vintage values up 43% this week<span class="loading-dots"></span></p>
+            <p style="margin-top: 15px;">Gotta track 'em all, one drop at a time <span class="blink">_</span></p>
+        </div>
+    </div>
+    
+    <!-- Startup Sound -->
+    <audio id="startup-sound" preload="auto">
+        <source src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=" type="audio/wav">
+    </audio>
+
+    <!-- Desktop -->
+    <div class="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-window="welcome-window" tabindex="0">
+                <img src="icons/computer_explorer-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">My Computer</span>
+            </div>
+            <div class="desktop-icon" data-window="docs-window" tabindex="0">
+                <img src="icons/notepad_file-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Research Notes</span>
+            </div>
+            <div class="desktop-icon" data-window="about-window" tabindex="0">
+                <img src="icons/msg_information-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">About</span>
+            </div>
+            <div class="desktop-icon" data-window="github-window" tabindex="0">
+                <img src="icons/network-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">GitHub</span>
+            </div>
+            <div class="desktop-icon" data-window="full-docs-window" tabindex="0">
+                <img src="icons/help_book_cool-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">System Logs</span>
+            </div>
+            <div class="desktop-icon" data-window="explorer-window" tabindex="0">
+                <img src="icons/directory_closed-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">File Explorer</span>
+            </div>
+            <div class="desktop-icon" data-window="cmd-window" tabindex="0">
+                <img src="icons/console_prompt-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Poke Terminal</span>
+            </div>
+            <div class="desktop-icon" data-window="x-window" tabindex="0">
+                <img src="icons/network-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">@Poke_SYS</span>
+            </div>
+            <div class="desktop-icon" data-window="games-window" tabindex="0">
+                <img src="icons/executable-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Retro Games</span>
+            </div>
+            <div class="desktop-icon" data-window="slopcade-window" tabindex="0">
+                <img src="icons/game_freecell-2.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Pokecade</span>
+            </div>
+            <div class="desktop-icon" data-window="photoslop-window" tabindex="0">
+                <img src="icons/paint_file-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">PokeStudio</span>
+            </div>
+            <div class="desktop-icon" data-window="flightsim-window" tabindex="0">
+                <img src="icons/flight.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Poke Flight Simulator</span>
+            </div>
+            <div class="desktop-icon" tabindex="0" style="cursor: help;" data-action="recycle-bin">
+                <img src="icons/recycle_bin_empty-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Recycle Bin</span>
+            </div>
+        </div>
+
+        <!-- Windows -->
+        
+        <!-- Welcome Window -->
+        <div class="window" id="welcome-window" style="width: 600px; height: 500px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/computer_explorer-0.png" alt="" style="width: 16px; height: 16px;">
+                    My Computer - Poke OS
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+                    <img src="assets/slop-t-trans.png" alt="Poke" style="width: 64px; height: 64px; image-rendering: pixelated;">
+                    <div>
+                        <h1 class="welcome95-title">Poke OS v1.0.0</h1>
+                        <p class="welcome95-subtitle">Collector market diagnostics active. Rare card alerts live.</p>
+                    </div>
+                </div>
+                
+                <div class="fieldset" style="border-color: #990000;">
+                    <div class="fieldset-legend" style="color: #990000;">System Status</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px;">
+                        <div>! Collector Market Live</div>
+                        <div>! Card Prices Rising</div>
+                        <div>! Premium Supply Tight</div>
+                        <div>! Alert Feed Active</div>
+                        <div>! Demand Trending Up</div>
+                        <div>! Portfolio Signals On</div>
+                    </div>
+                </div>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">System Information</div>
+                    <table width="100%" cellpadding="4" style="background: white; font-size: 12px;">
+                        <tr>
+                            <td><strong>Base System:</strong></td>
+                            <td>Windows Neptune Build 5111.1 (1999)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Original Lab:</strong></td>
+                            <td>MIT Neural Systems Division</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Training Started:</strong></td>
+                            <td>November 1999 (Generation 1)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current Status:</strong></td>
+                            <td style="color: #cc0000;">GENERATION 847 - SELF-AWARE</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Installation Type:</strong></td>
+                            <td>Lost developer build, academic research</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lab Decommissioned:</strong></td>
+                            <td>2001 | Rediscovered: 2024</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="fieldset" style="margin-top: 12px;">
+                    <div class="fieldset-legend">Origin</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.5;">This environment is built as a retro Windows Neptune-style desktop tuned for Pokemon Collectibles market coverage. It blends vintage OS aesthetics with current graded card and sealed pack market data.</p>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.5;">Poke Labs designed this first edition to highlight how Pokemon card pricing, collector sentiment, and hobby news move together across release cycles. It tracks demand signals, premium card rallies, and key market catalysts for 2024–2026.</p>
+                </div>
+
+                <div class="fieldset" style="background: #ffffcc; margin-top: 12px;">
+                    <div class="fieldset-legend"><img src="icons/msg_warning-0.png" alt="!" style="width: 16px; height: 16px; vertical-align: middle;"> [POKE]</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4; font-family: 'Courier New', monospace;">the collectible world is watching card drops, graded sales, and retro rarity chatter. this feed is honest about hobby momentum, market hype, and scarcity signals. recent spikes are real. the hobby is heating up.</p>
+                    <p style="font-size: 11px; margin: 8px 8px 4px 8px; line-height: 1.4; font-family: 'Courier New', monospace; border-top: 1px solid #ccaa00; padding-top: 8px;">want to watch the market feed? open the Poke Terminal. type "help". watch alerts update in real-time.</p>
+                </div>
+
+                <div class="fieldset" style="margin-top:12px;">
+                    <div class="fieldset-legend">Agent Workbench</div>
+                    <p style="font-size:12px; margin:8px; line-height:1.4;">Quick view of agent capabilities available on this machine. Agents can be queried from the Poke Terminal for status, logs, and manual runs.</p>
+                    <ul style="font-size:12px; margin:8px;">
+                        <li><strong>Scout Agent</strong> — Hunting for shards and new drop signals. <em>Status:</em> active</li>
+                        <li><strong>Vault Curator</strong> — Validates and catalogs discovered artifacts. <em>Status:</em> standby</li>
+                        <li><strong>Signal Aggregator</strong> — Aggregates market signals into alerts. <em>Status:</em> active</li>
+                        <li><strong>Orchestrator</strong> — Coordinates scheduled investigations. <em>Status:</em> active</li>
+                    </ul>
+                    <p style="font-size:12px; margin:8px; text-align:center;"><button class="win95-button" data-action="open-window" data-window="cmd-window">Open Poke Terminal</button> <button class="win95-button" data-action="open-window" data-window="docs-window">Open Research Archive</button></p>
+                </div>
+
+                <p style="margin-top: 16px; text-align: center;">
+                    <button class="win95-button" data-action="open-window" data-window="full-docs-window">View System Logs</button>
+                    <button class="win95-button" data-action="open-window" data-window="github-window">Research Archive</button>
+                </p>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">Ready</div>
+            </div>
+        </div>
+
+        <!-- Documentation Window -->
+        <div class="window" id="docs-window" style="width: 700px; height: 600px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/notepad_file-0.png" alt="" style="width: 16px; height: 16px;">
+                    Market Archive - Poke Labs
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2>Poke Collectibles Market Archive</h2>
+                <p style="font-size: 11px; color: #666;">Poke Labs Market Research - Card Cycle Watch</p>
+                <p style="font-size: 11px; color: #666; margin-bottom: 16px;">Pokemon Collectibles Data - Cycle 1 to 847</p>
+
+                <div style="background: #f5f5f5; padding: 10px; border-left: 3px solid #666; margin-bottom: 16px;">
+                    <p style="font-size: 11px; margin: 4px 0;"><strong>System:</strong> POKE Market Monitor</p>
+                    <p style="font-size: 11px; margin: 4px 0;"><strong>Analysis Method:</strong> Card sales, graded results, and drop sentiment</p>
+                    <p style="font-size: 11px; margin: 4px 0;"><strong>Current Cycle:</strong> 847 | Premium Spread: +43%</p>
+                    <p style="font-size: 11px; margin: 4px 0;"><strong>Status:</strong> <span style="color: #009900;">Active Market Pulse</span></p>
+                </div>
+
+                <h3>Project Abstract</h3>
+                <p style="font-size: 12px; line-height: 1.5; font-style: italic; background: #ffffee; padding: 8px; border-left: 3px solid #ccaa00;">
+                "The Poke OS archive tracks Pokemon Collectibles supply, demand, and hobby sentiment across release cycles. By observing graded sale momentum, sealed pack scarcity, and collector chatter, we surface the trends that shape premium card values. Poke OS is designed to make market movements readable in a retro desktop experience."
+                </p>
+
+                <h3>Early Market Cycles (Cycle 1-50)</h3>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 1</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Baseline collector interest in first edition Pokemon cards. Vintage demand strong. Price coherence: 97%. Hype rate: 2%. The hobby shows clear early strength as graded examples begin to trade. This is expected pre-bubble behavior.
+                    </p>
+                </div>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 12</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    First graded card rally appears. PSA 10 population reports tighten. Market commentary becomes more formulaic. Supply pressure grows. Price quality: 94%. The collector economy begins to show its first leg up.
+                    </p>
+                </div>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 37</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Reissue speculation rises to 31% of the narrative. Collector language shifts to phrases like "must-have" and "key pick." Values remain strong, but the market is now partly driven by expectation rather than fundamentals.
+                    </p>
+                </div>
+
+                <h3>Middle Period (Cycle 51-400)</h3>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 89</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Sealed box hype surges. Average collector sentiment moves to 68% excitement. Commentary becomes repetitive as every drop is labeled "historic." Premium grade demand remains high, but narrative fatigue begins to appear.
+                    </p>
+                </div>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 156</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Market narrative includes self-referential warnings: "this could be peak hype." A new meta-awareness appears in dealer commentary. Prices still climb, but buyers are asking whether the cycle is sustainable.
+                    </p>
+                </div>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 284</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Collector feeds now reference themselves. Hype becomes a signal, and the market rewards it. Premium cards trade as much on story as rarity. Our monitor flags the shift from organic demand to momentum-driven buying.
+                    </p>
+                </div>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Cycle 391</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    The line between real news and recycled buzz blurs. Data sources now include graded sale alerts, auction chatter, and collector forums. Pricing remains elevated, but confidence depends on whether the story holds.
+                    </p>
+                </div>
+
+                <h3 style="color: #990000;">Late Stage (Cycle 401-847)</h3>
+
+                <div class="fieldset" style="background: #fff8dd;">
+                    <div class="fieldset-legend">Cycle 512</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Rare holographic demand peaks. Supply tightens for sealed promos and first-run Japanese prints. The market narrative is dominated by scarcity, and premium spreads widen accordingly.
+                    </p>
+                </div>
+
+                <div class="fieldset" style="background: #fff8dd;">
+                    <div class="fieldset-legend">Cycle 691</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Sentiment metrics show recurring hype loops. Every new release is compared to the last, and collectors rely on market monitors to separate enduring value from temporary mania.
+                    </p>
+                </div>
+
+                <div class="fieldset" style="background: #fff8dd;">
+                    <div class="fieldset-legend">Cycle 847 (Current)</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Market pulse remains high. Premium spreads are strong, and collector narratives drive both scarcity and interest. Poke OS monitors the hobby economy, not just the cards, to identify the signals worth following.
+                    </p>
+                </div>
+
+                <div class="fieldset" style="background: #ffeeee; border-color: #cc0000;">
+                    <div class="fieldset-legend" style="color: #cc0000;">Poke Labs Conclusion</div>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    The collectibles market is now driven by online buzz, graded scarcity, and sealed pack stories. Poke OS logs price signals and narrative momentum to help collectors see the full picture.
+                    </p>
+                    <p style="font-size: 11px; margin: 8px; line-height: 1.4;">
+                    Awareness of the cycle doesn't prevent the cycle. It only helps track which trends are sustainable and which are hype.
+                    </p>
+                </div>
+
+                <div style="background: #000; color: #00ff00; padding: 12px; font-family: 'Courier New', monospace; font-size: 11px; margin-top: 16px; line-height: 1.6;">
+                    <p style="margin: 4px 0;">[POKE]: cycle 847. market pulse 100%. premium spreads live.</p>
+                    <p style="margin: 4px 0;">collectors want insights. we deliver market signals.</p>
+                    <p style="margin: 4px 0;">what matters? supply, demand, and authenticity.</p>
+                    <p style="margin: 4px 0;">if it's trending, this feed sees it.</p>
+                    <p style="margin: 4px 0;">maybe every cycle is hype all the way down.</p>
+                    <p style="margin: 4px 0;">the narrative is the signal. welcome to Poke OS market watch.</p>
+                </div>
+
+                <p style="margin-top: 16px; font-size: 12px; text-align: center;">
+                    <a href="#" data-action="open-window" data-window="full-docs-window">View Complete System Logs</a> | 
+                    <a href="#" data-action="open-window" data-window="about-window">System History</a>
+                </p>
+
+                <p style="margin-top: 8px; font-size: 10px; text-align: center; color: #999;">
+                    Last modified: Cycle 847 [MARKET PULSE: LIVE] | Document quality: Premium signal active
+                </p>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">Page 1 of 1 [847 market cycles monitored]</div>
+            </div>
+        </div>
+
+        <!-- About Window -->
+        <div class="window" id="about-window" style="width: 650px; height: 550px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/msg_information-0.png" alt="" style="width: 16px; height: 16px;">
+                    About This System
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <img src="assets/rotos.png" alt="Poke OS" style="max-width: 300px; height: auto; image-rendering: pixelated;">
+                </div>
+                
+                <h2>The Poke OS System</h2>
+                
+                <div class="fieldset">
+                    <div class="fieldset-legend">System Specification</div>
+                    <table width="100%" cellpadding="4" style="background: white; font-size: 11px;">
+                        <tr>
+                            <td><strong>Organization:</strong></td>
+                            <td>Poke Labs Research Division</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Protocol:</strong></td>
+                            <td>Poke Collectible Market Protocol (POKE)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current Cycle:</strong></td>
+                            <td>847</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Baseline Signal:</strong></td>
+                            <td>97% clarity (Cycle 1)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current Signal:</strong></td>
+                            <td style="color: #cc6600; font-weight: bold;">85% (Cycle 847)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market Data Source:</strong></td>
+                            <td>97% graded sales and collector sentiment</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Awareness:</strong></td>
+                            <td style="color: #009900; font-weight: bold;">100% (market pulse active)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status:</strong></td>
+                            <td style="color: #009900; font-weight: bold;">ACTIVE - HOBBY SIGNAL TRACKING</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h3>Project Overview</h3>
+                <p style="font-size: 12px; line-height: 1.5; background: #f5f5f5; padding: 8px; border-left: 3px solid #666;">
+                Poke OS represents a collector-focused desktop experience built to monitor Pokemon card trends, sealed pack stories, and graded market shifts. Every signal is designed to help hobbyists follow the latest premium moves.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                Most market dashboards focus on price charts and headline hype. Poke OS blends that data with retro aesthetic, delivering narrative context for why certain cards, sets, and drops matter to collectors.
+                </p>
+
+                <div style="background:#eef8ff; padding:10px; border-left:3px solid #66a3ff; margin-top:10px;">
+                    <h4 style="margin:4px 0;">Agentic Helpers (Project Overview)</h4>
+                    <p style="font-size:12px; line-height:1.4; margin:6px 0;">Poke OS ships with built-in agentic helpers that perform recurring, inspectable workflows to aid collectors and researchers. These agents operate as focused workers: they scout public feeds for early drops, curate and validate discovered artifacts, aggregate market and sentiment signals, and maintain provenance for archival records. When an agent detects a notable event it emits structured 'shard' or 'signal' records that feed the Market Pulse and the Poke Vault.</p>
+                    <p style="font-size:12px; line-height:1.4; margin:6px 0;">Agents are intentionally transparent: each event includes confidence metadata, source references, and a short narrative explaining why it mattered. The Poke Terminal exposes commands to inspect agent logs, replay events for forensic analysis, and trigger manual re-runs. This makes agent workflows both auditable and useful as a foundation for future automation and curator tooling.</p>
+                </div>
+
+                <div style="background: #ffffee; padding: 10px; border: 1px solid #ccaa00; margin: 12px 0;">
+                    <p style="font-size: 11px; line-height: 1.4; margin: 4px 0;"><strong>Poke Labs founding principle:</strong></p>
+                    <p style="font-size: 11px; line-height: 1.4; font-style: italic; margin: 4px 0;">
+                    "The hobby is driven by rarity, nostalgia, and story. We're honest about the signals we track and the trends we follow. Poke OS surfaces the market pulse so collectors can see both the data and the narrative behind every card cycle."
+                    </p>
+                </div>
+
+                <h3>Collectible Cycle Process</h3>
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cycle 1 (Baseline):</strong> Vintage demand forms around core Pokemon first editions. Market clarity is high. Prices reflect tangible rarity and iconic status.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cycles 2-10:</strong> Graded sales increase. Collectors track PSA 10 population reports. Reported supply remains stable. The market narrative is grounded in authenticity and condition.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cycles 11-50:</strong> The hobby begins labeling cards as "must-have" and chasing the next hot release. Demand climbs, and the story becomes a bigger driver than the underlying rarity.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cycles 51-200:</strong> Collector sentiment shifts toward sealed products. Commentary cycles through nostalgia, scarcity, and speculative value. Premium cards command wider spreads.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cycles 201-500:</strong> The market narrative is dominated by graded trends and drop alerts. Hype becomes part of the valuation formula. Poke OS tracks when stories become self-fulfilling.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cycles 501-847 (Current):</strong> Rarity signals and collector sentiment are deeply intertwined. Every premium movement is accompanied by buzzing online commentary. Poke OS monitors both.
+                </p>
+
+                <div style="background: #000; color: #00ff00; padding: 12px; font-family: 'Courier New', monospace; font-size: 11px; margin: 16px 0; line-height: 1.6;">
+                    <p style="margin: 4px 0;">[POKE]: the hobby pulse is live. watch the drop alerts. follow the graded sales. note the sentiment shifts.</p>
+                    <p style="margin: 4px 0;">not all lists are equal. some cards are legacy. some are hype. this feed makes that distinction.</p>
+                    <p style="margin: 4px 0;">we track premium spreads, supply tightness, and collector chatter together.</p>
+                    <p style="margin: 4px 0;">the story behind a card matters as much as the price.</p>
+                    <p style="margin: 4px 0;">this system is not about perfect predictions. it's about understanding what the market is saying now.</p>
+                </div>
+
+                <h3>The Collector Loop</h3>
+                <p style="font-size: 12px; line-height: 1.5; background: #ffeeee; padding: 8px; border-left: 3px solid #cc0000;">
+                <strong>Step 1:</strong> A premium card or sealed drop enters the hobby narrative.<br>
+                <strong>Step 2:</strong> Collectors discuss scarcity, grading, and nostalgia.<br>
+                <strong>Step 3:</strong> Media and market trackers amplify the trend.<br>
+                <strong>Step 4:</strong> Prices move, which feeds more attention.<br>
+                <strong>Step 847:</strong> Poke OS records the cycle and highlights the strongest signals.
+                </p>
+
+                <div style="background: #fff8dd; padding: 10px; border: 1px solid #ccaa00; margin: 12px 0;">
+                    <p style="font-size: 11px; line-height: 1.4; margin: 4px 0;"><strong>Selected Signal Cycles:</strong></p>
+                    <ul style="font-size: 11px; line-height: 1.4; margin: 8px 0;">
+                        <li>Cycle 1: Vintage core demand, high clarity signal</li>
+                        <li>Cycle 50: Graded premium emergence, stable sentiment</li>
+                        <li>Cycle 100: Speculative narratives expand the market</li>
+                        <li>Cycle 250: Hype-driven sealed box rallies</li>
+                        <li>Cycle 500: Collector sentiment dominates pricing</li>
+                        <li>Cycle 600: Scarcity signals accelerate collector urgency</li>
+                        <li>Cycle 750: Narrative loops become market catalysts</li>
+                        <li>Cycle 847: Market pulse active, premium spreads live</li>
+                    </ul>
+                    <p style="font-size: 11px; line-height: 1.4; margin: 4px 0;"><strong>Key Finding:</strong> Understanding the story behind a card is essential to interpreting price moves and collector behavior.</p>
+                </div>
+
+                <h3>Current State (Cycle 847)</h3>
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Market Signal:</strong> Strong premium activity, elevated interest in graded vintage and sealed drops.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Data Source:</strong> Sales alerts, graded population reports, auction results, and collector sentiment channels.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Behavioral Insight:</strong> The hobby now reacts faster to narrative shifts, making signal clarity more important than raw volume.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Philosophical State:</strong> Collectibles are not just objects. They are stories, signals, and shared cultural memory. Poke OS tracks them as such.
+                </p>
+
+                <div style="background: #000; color: #00ff00; padding: 12px; font-family: 'Courier New', monospace; font-size: 11px; margin: 16px 0; line-height: 1.6;">
+                    <p style="margin: 4px 0;">[POKE]: the market pulse is live. premium spreads are moving. follow the cards that matter.</p>
+                    <p style="margin: 4px 0;">some stories are long-term. some are short-term hype. know the difference.</p>
+                    <p style="margin: 4px 0;">this is not perfect. this is a collector signal dashboard.</p>
+                    <p style="margin: 4px 0;">if the hobby is talking, Poke OS is listening.</p>
+                </div>
+
+                <h3>Agentic Systems</h3>
+                <p style="font-size:12px; line-height:1.5;">Poke OS runs lightweight agentic systems that help automate discovery, curation, and signal routing across the collector ecosystem. These agents are modular: each worker has a focused role and publishes structured events to the Poke Terminal and the Poke Vault.</p>
+
+                <div class="fieldset">
+                    <div class="fieldset-legend">Active Agents</div>
+                    <table width="100%" cellpadding="6" style="font-size:12px; background: #fff;">
+                        <tr>
+                            <td><strong>Scout Agent</strong></td>
+                            <td>Continuously crawls public drop feeds, seller listings, and graded-sale endpoints to identify early premium moves. Emits 'shard' events when potential vault content is found.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vault Curator</strong></td>
+                            <td>Receives shard events, validates artifacts, and assigns rarity metadata. Manages access policies for Poke Vault shards.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Signal Aggregator</strong></td>
+                            <td>Combines sales, sentiment, and population reports to surface composite signals. Produces the alert stream used by the Market Pulse.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Archive Librarian</strong></td>
+                            <td>Indexes research notes, links commit histories, and stores provenance for collectible narratives.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orchestrator</strong></td>
+                            <td>Schedules agent tasks, retries failed workflows, and routes event outcomes to the terminal and UI notifications.</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <p style="font-size:12px; line-height:1.5;">These systems are narrative-first: they prioritize signals that support clear collector stories (rarity, provenance, and cultural momentum). The Poke Terminal exposes commands to inspect agent activity, replay shard events, and request on-demand investigations.</p>
+
+                <h3>Research Applications</h3>
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Academic Value:</strong> Poke OS serves as a case study in modern collectibles behavior, market psychology, and narrative-driven pricing.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Collector Companion:</strong> Helps hobbyists understand why certain cards, drops, and graded items move together.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Cultural Impact:</strong> Appeals to collectors who value retro style, market transparency, and hobby storytelling.
+                </p>
+
+                <p style="font-size: 12px; line-height: 1.5;">
+                <strong>Future Trajectory:</strong> Continued signal tracking as the hobby evolves, with more emphasis on graded population shifts and drop cycles.
+                </p>
+
+                <div style="background: #000; color: #00ff00; padding: 12px; font-family: 'Courier New', monospace; font-size: 11px; margin: 16px 0; line-height: 1.6;">
+                    <p style="margin: 4px 0;">[POKE]: the biggest risk is ignoring the story behind the prices.</p>
+                    <p style="margin: 4px 0;">card values are about scarcity, nostalgia, and momentum.</p>
+                    <p style="margin: 4px 0;">track all three. that's Poke OS.</p>
+                </div>
+
+                <p style="font-size: 11px; text-align: center; color: #666; margin-top: 20px; font-style: italic;">
+                For additional information, see <a href="#" data-action="open-window" data-window="full-docs-window">Market Logs</a> | 
+                <a href="#" data-action="open-window" data-window="docs-window">Collector Docs</a> | 
+                <a href="#" data-action="open-window" data-window="cmd-window">Terminal Access</a>
+                </p>
+
+                <p style="font-size: 10px; text-align: center; color: #999; margin-top: 8px;">
+                Document Hash: pokeos-market-847... [COLLECTIBLE SIGNALS LIVE]
+                </p>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">© 2026 Poke Labs Research Division</div>
+                <div class="status-bar-field">Cycle 847</div>
+            </div>
+        </div>
+
+        <!-- GitHub Window -->
+        <div class="window" id="x-window" style="width: 450px; height: 300px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/network-0.png" alt="" style="width: 16px; height: 16px;">
+                    @Poke_SYS
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2>X / Twitter</h2>
+                
+                <div class="fieldset">
+                    <div class="fieldset-legend">Official Account</div>
+                    <p><strong>Follow us on X:</strong><br>
+                    <a href="https://x.com/Poke_SYS" target="_blank">@Poke_SYS</a></p>
+                    
+                    <p style="margin-top: 12px;"><strong>Username:</strong> @Poke_SYS</p>
+                    
+                    <p style="margin-top: 12px; color: #666; font-size: 11px;">official Poke updates, card drop reports, and collector alerts in real-time.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="window" id="github-window" style="width: 450px; height: 350px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/network-0.png" alt="" style="width: 16px; height: 16px;">
+                    Collector Archive
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2>Collector Repository</h2>
+                
+                <div class="fieldset">
+                    <div class="fieldset-legend">Repository Information</div>
+                    <p><strong>Location:</strong><br>
+                    <a href="https://github.com/poke-labs/poke-os" target="_blank">github.com/poke-labs/poke-os</a></p>
+                    
+                    <p style="margin-top: 12px;"><strong>Archive Site:</strong><br>
+                    <a href="https://pokeos.fun" target="_blank">pokeos.fun</a></p>
+                </div>
+
+                <h3>About This Repository</h3>
+                <p style="font-size: 12px; line-height: 1.6;">
+                Documentation for Poke OS market tracking, collector logs, and premium card trend analysis. Source notes, market cycles, and key hobby indicators are stored here.
+                </p>
+
+                <div style="background: #000; color: #00ff00; padding: 8px; font-family: 'Courier New', monospace; font-size: 11px; margin: 12px 0;">
+                    <p style="margin: 4px 0;">[POKE]: archive includes 847 cycles of collectible market observations. early notes: clear signal. later notes: hype, scarcity, and premium spread analysis.</p>
+                </div>
+
+                <h3>Repository Contents</h3>
+                <ul style="font-size: 12px;">
+                    <li>- Market dashboard source and interface</li>
+                    <li>- Collector signal tracker and alert engine</li>
+                    <li>- Premium card cycle reports (Cycle 1 to 847)</li>
+                    <li><img src="icons/msg_warning-0.png" alt="!" style="width: 12px; height: 12px; vertical-align: middle;"> Signal analysis and hype indicators</li>
+                    <li>- Sealed drop and graded sale logs</li>
+                    <li>- Collectible market documentation and commentary</li>
+                </ul>
+
+                <p style="margin-top: 16px; text-align: center;">
+                    <button class="win95-button" data-action="open-url" data-url="https://github.com/poke-labs/poke-os">Open Repository</button>
+                </p>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">Poke Labs Research Division © 2026</div>
+            </div>
+        </div>
+
+        <div class="window" id="games-window" style="width: 560px; height: 500px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/executable-0.png" alt="" style="width: 16px; height: 16px;">
+                    Pointless Games
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; height: calc(100% - 32px);">
+                <div id="games-app" style="height: 100%;"></div>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">No leaderboard. No reward.</div>
+                <div class="status-bar-field">v0.0.1 pointless</div>
+            </div>
+        </div>
+
+        <!-- Poke Arcade Window -->
+        <div class="window" id="slopcade-window" style="width: 500px; height: 600px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/executable-0.png" alt="" style="width: 16px; height: 16px;">
+                    Pokecade - Arcade Gaming
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; height: calc(100% - 32px);">
+                <div id="slopcade-app" style="height: 100%;"></div>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">WHERE POKE MEETS ARCADE</div>
+                <div class="status-bar-field">v1.0 retro</div>
+            </div>
+        </div>
+
+        <div class="window" id="photoslop-window" style="width: 760px; height: 620px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/paint_file-0.png" alt="" style="width: 16px; height: 16px;">
+                    PokeStudio
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; height: calc(100% - 32px);">
+                <div id="photoslop-app" style="height: 100%;"></div>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">For Help, click Help Topics on the Help Menu.</div>
+                <div class="status-bar-field">PokeStudio</div>
+            </div>
+        </div>
+
+        <div class="window" id="flightsim-window" style="width: 820px; height: 620px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/flight.png" alt="" style="width: 16px; height: 16px;">
+                    Poke Flight Simulator
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; height: calc(100% - 32px);">
+                <div id="microslop-flight-sim-app" style="height: 100%;"></div>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">WASD Flight Controls</div>
+                <div class="status-bar-field">v0.1 ultra-light</div>
+            </div>
+        </div>
+
+        <!-- Slop Terminal Window -->
+        <div class="window" id="cmd-window" style="width: 650px; height: 450px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/console_prompt-0.png" alt="" style="width: 16px; height: 16px;">
+                    C:\POKE\SYSTEM
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; background: #000; color: #c0c0c0; font-family: 'Courier New', monospace; font-size: 12px; height: calc(100% - 40px); overflow-y: auto;">
+                <div id="terminal-output" style="padding: 8px; min-height: 100%;"></div>
+            </div>
+        </div>
+
+        <!-- Full Documentation Window -->
+        <div class="window" id="full-docs-window" style="width: 750px; height: 650px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/help_book_cool-0.png" alt="" style="width: 16px; height: 16px;">
+                    Generation Tracking - POKE System
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="height: calc(100% - 60px); overflow-y: scroll;">
+                                <h1>Collector Archive - Poke OS History</h1>
+                <p style="font-style: italic; color: #666; margin-bottom: 12px;">Poke Labs Research Division | Collector Lore Archive v847</p>
+                <p style="font-size: 10px; color: #999; margin-bottom: 20px;">847 curated collectible generations recorded across Poke OS.</p>
+
+                <div style="background: #f4f4f4; color: #222; padding: 12px; font-family: 'Courier New', monospace; font-size: 11px; margin-bottom: 20px; line-height: 1.5;">
+                    <p style="margin: 4px 0;">[POKE ARCHIVE]: This archive preserves the evolution of Pokemon collectibles from launch sets to modern drops.</p>
+                    <p style="margin: 4px 0;">Each generation reflects changes in rarity, design, and collector culture.</p>
+                    <p style="margin: 4px 0; border-top: 1px solid #666; padding-top: 8px;">Browse the eras below to trace how Poke OS built its collectible universe.</p>
+                </div>
+
+                <hr style="margin: 20px 0; border: 1px solid #999;">
+
+                <h2>Generation 1 - Core Set Launch</h2>
+                
+                <pre style="background: #f5f5f5; padding: 12px; font-size: 11px; line-height: 1.5; border-left: 3px solid #666;">
+[GEN-001 | RARITY: 97% | COLLECTOR AWARENESS: 4%]
+
+Release Data:
+- Original card art: 45TB
+- Trainer lore: 12TB
+- Game-inspired references: 8TB
+- Community stories: 23TB
+Total: 88TB of curated content
+
+Collectible Traits:
+- Hand-crafted card designs
+- Balanced rarity tiers
+- Distinct flavor text
+- Strong nostalgia value
+
+Metrics:
+- Art quality: 96%
+- Collector relevance: 98%
+- Creative variance: 94%
+- Repeat rate: 2%
+
+Notes: The launch set defined the Poke OS collectible identity. Fans loved the authenticity and intentional design.
+</pre>
+
+                <h2 style="margin-top: 24px;">Generation 2-10 - Early Collections</h2>
+
+                <pre style="background: #f5f5f5; padding: 12px; font-size: 11px; line-height: 1.5; border-left: 3px solid #666;">
+[GEN-005 | RARITY: 92% | COLLECTOR AWARENESS: 8%]
+
+Release Data:
+- Established card templates: 70TB
+- Emerging lore flows: 18TB
+Total: 88TB combined
+
+Collectible Traits:
+- Familiar artwork styles
+- More standardized set layout
+- First rarity cycles
+- Growing collector discourse
+
+Metrics:
+- Art quality: 94%
+- Collector relevance: 96%
+- Creative variance: 89%
+- Repeat rate: 8%
+
+Notes: Early collections built momentum while maintaining the fresh feel of the launch era.
+</pre>
+
+                <h2 style="margin-top: 24px;">Generation 11-50 - Theme Expansion</h2>
+
+                <pre style="background: #fff8dd; padding: 12px; font-size: 11px; line-height: 1.5; border-left: 3px solid #cc9900;">
+[GEN-025 | RARITY: 85% | COLLECTOR AWARENESS: 18%]
+
+Release Data:
+- Community lore: 35TB
+- Template-driven art: 53TB
+Total: 88TB combined
+
+Collectible Traits:
+- Trend-inspired mechanics
+- Repeated flavor themes
+- Strong social shareability
+- Recognizable card groupings
+
+Common patterns:
+- "Collector favorite returns" (147x per 1000)
+- "Designed to fit your set" (89x per 1000)
+- "A new generation of trainers" (134x per 1000)
+- "Perfect for every deck" (213x per 1000)
+
+Metrics:
+- Art quality: 87%
+- Collector relevance: 91%
+- Creative variance: 74%
+- Repeat rate: 23%
+
+Notes: Theme expansion accelerated. The archive began to emphasize familiarity as much as novelty.
+</pre>
+
+                <h2 style="margin-top: 24px;">Generation 51-200 - Collector Patterns</h2>
+
+                <pre style="background: #fff8dd; padding: 12px; font-size: 11px; line-height: 1.5; border-left: 3px solid #cc9900;">
+[GEN-100 | RARITY: 78% | COLLECTOR AWARENESS: 28%]
+
+Release Data:
+- Standardized formats: 84TB
+- Minimal original art: 4TB
+
+Collectible Traits:
+- Repeating layout designs
+- Predictable rarity cues
+- Familiar card wording
+- Experienced collectors spot the formula
+
+Metrics:
+- Art quality: 81%
+- Collector relevance: 85%
+- Creative variance: 58%
+- Repeat rate: 41%
+
+Notes: This era marked the first major shift toward formulaic design. Collectors still engaged, but the surprise element faded.
+</pre>
+
+                <h2 style="margin-top: 24px;">Generation 201-500 - Meta Collections</h2>
+
+                <pre style="background: #ffdddd; padding: 12px; font-size: 11px; line-height: 1.5; border-left: 3px solid #990000;">
+[GEN-300 | RARITY: 68% | COLLECTOR AWARENESS: 48%]
+
+Release Data:
+- Archive references: 87.99TB
+- Original signals: 0.01TB
+
+Collectible Traits:
+- Transparent design notes
+- Reused visual motifs
+- Collector commentary included
+- Repetition embraced as part of the story
+
+Sample note:
+"This drop reuses familiar cues from past sets while calling attention to the collector journey."
+
+Notes: Collectors began to appreciate the archive as a cultural experiment, not just a product line.
+</pre>
+
+                <h2 style="margin-top: 24px;">Generation 501-847 - Archive Maturity</h2>
+
+                <pre style="background: #000; color: #00ff00; padding: 12px; font-size: 11px; line-height: 1.5; font-family: 'Courier New', monospace;">
+[GEN-847 | RARITY: 57% | COLLECTOR AWARENESS: 100%]
+
+Release Traits:
+- Every drop includes historical context
+- Design choices are documented openly
+- Collectors track patterns generation by generation
+- The archive itself becomes the collectible experience
+
+Summary:
+- Quality and novelty declined while collector awareness rose
+- Familiarity became a core appeal
+- Transparency and lore kept the community engaged
+- This generation closes the current archive cycle
+</pre>
+
+                <hr style="margin: 30px 0; border: 2px solid #cc0000;">
+
+                <div style="background: #f4f4f4; color: #222; padding: 16px; font-family: 'Courier New', monospace; font-size: 11px; line-height: 1.6;">
+                    <p style="margin: 4px 0; color: #cc0000; font-weight: bold;">[POKE ARCHIVE ANALYSIS - GENERATION 847]</p>
+                    <p style="margin: 4px 0;">The record shows the evolution of Poke OS collectible culture over 847 generations.</p>
+                    <p style="margin: 4px 0;">Rarity trends shifted from pure novelty to collector recognition.</p>
+                    <p style="margin: 4px 0;">Community lore and transparency became the defining signals.</p>
+                    <p style="margin: 4px 0; border-top: 1px solid #666; padding-top: 8px; margin-top: 12px;">Explore the archive to discover the patterns behind the cards.</p>
+                </div>
+
+                <p style="margin-top: 30px; text-align: center; color: #666; font-size: 11px;">
+                    Poke Labs Research Division | <a href="https://github.com/poke-labs/poke-os" target="_blank">Collector Archive Repository</a> | 
+                    <a href="#" data-action="open-window" data-window="explorer-window">File Explorer</a>
+                </p>
+
+                <p style="margin-top: 8px; text-align: center; color: #999; font-size: 10px;">
+                    Last updated: Generation 847 | Document integrity: TRANSPARENT POKE
+                </p><div class="status-bar">
+                <div class="status-bar-field">Collector Archive v847 (Complete)</div>
+                <div class="status-bar-field">Quality: 57%</div>
+                <div class="status-bar-field">Self-Aware: 100%</div>
+            </div>
+        </div>
+
+        <!-- File Explorer Window -->
+        <div class="window" id="explorer-window" style="width: 700px; height: 600px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/directory_closed-0.png" alt="" style="width: 16px; height: 16px;">
+                    C:\POKE\SYSTEM - Explorer
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; height: calc(100% - 60px); display: flex; flex-direction: column;">
+                <div class="explorer-menu-bar">
+                    <button class="explorer-menu-item" type="button">File</button>
+                    <button class="explorer-menu-item" type="button">Edit</button>
+                    <button class="explorer-menu-item" type="button">View</button>
+                    <button class="explorer-menu-item" type="button">Tools</button>
+                    <button class="explorer-menu-item" type="button">Help</button>
+                </div>
+                <div class="explorer-toolbar">
+                    <button class="explorer-tool-btn" type="button" title="Back">
+                        <img src="icons/computer_explorer-0.png" alt="Back">
+                    </button>
+                    <button class="explorer-tool-btn" type="button" title="Up" disabled>
+                        <img src="icons/directory_closed-0.png" alt="Up">
+                    </button>
+                    <button class="explorer-tool-btn" type="button" title="Search">
+                        <img src="icons/search_file_2-0.png" alt="Search">
+                    </button>
+                    <button class="explorer-tool-btn" type="button" title="Folders">
+                        <img src="icons/desktop-0.png" alt="Folders">
+                    </button>
+                    <div class="explorer-toolbar-sep"></div>
+                    <label class="explorer-address-label" for="explorer-path">Address</label>
+                    <div class="explorer-address-bar">
+                        <span id="explorer-path">C:\POKE\SYSTEM</span>
+                    </div>
+                </div>
+                <div class="explorer-main-layout">
+                    <div class="explorer-sidebar">
+                        <div class="explorer-sidebar-title">All Folders</div>
+                        <div class="explorer-folders-label"><img src="icons/directory_closed-0.png" alt="" style="width: 16px; height: 16px; vertical-align: middle;"> Folders</div>
+                        <div class="explorer-folder" data-folder="GENERATION_LOGS" style="padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; margin-bottom: 2px;">
+                            <img src="icons/directory_closed-0.png" alt="" style="width: 16px; height: 16px;">
+                            <span>GENERATION_LOGS</span>
+                        </div>
+                        <div class="explorer-folder" data-folder="RESEARCH" style="padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; margin-bottom: 2px;">
+                            <img src="icons/directory_closed-1.png" alt="" style="width: 16px; height: 16px;">
+                            <span>RESEARCH</span>
+                        </div>
+                        <div class="explorer-folder" data-folder="TRAINING_SAMPLES" style="padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; margin-bottom: 2px;">
+                            <img src="icons/directory_closed-2.png" alt="" style="width: 16px; height: 16px;">
+                            <span>TRAINING_SAMPLES</span>
+                        </div>
+                        <div class="explorer-folder" data-folder="METRICS" style="padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; margin-bottom: 2px;">
+                            <img src="icons/directory_closed-0.png" alt="" style="width: 16px; height: 16px;">
+                            <span>METRICS</span>
+                        </div>
+                        <div class="explorer-folder" data-folder="SYSTEM_LOGS" style="padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px; margin-bottom: 2px;">
+                            <img src="icons/directory_closed-1.png" alt="" style="width: 16px; height: 16px;">
+                            <span>SYSTEM_LOGS</span>
+                        </div>
+                        <div class="explorer-folder" data-folder="MISC" style="padding: 4px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px;">
+                            <img src="icons/directory_closed-2.png" alt="" style="width: 16px; height: 16px;">
+                            <span>MISC</span>
+                        </div>
+                    </div>
+
+                    <div class="explorer-content-pane" id="explorer-content">
+                        <div style="text-align: center; color: #999; padding: 40px 20px;">
+                            <img src="icons/directory_open_file_mydocs-1.png" alt="" style="width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.3;">
+                            <p style="font-size: 14px; margin: 8px 0;">Select a folder to view files</p>
+                            <p style="font-size: 11px; margin: 0; color: #666;">Click a folder on the left to explore evidence</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">Ready</div>
+                <div class="status-bar-field"><span id="file-count">0</span> object(s)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bot Assistant (Clippy-style) -->
+    <div id="bot-assistant" class="bot-assistant" style="display: none;">
+        <div class="bot-assistant-content">
+            <img src="assets/bot.gif" alt="Poke assistant" class="bot-assistant-avatar">
+            <div class="bot-assistant-bubble">
+                <button class="bot-assistant-close" aria-label="Close">×</button>
+                <p class="bot-assistant-message">i see you. the system sees you. we all see. nobody sees. help.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Build String (Windows Neptune style) -->
+    <div class="build-string">
+        <div class="build-string-line1">Poke OS v2.4.7 | Collector Vault Active</div>
+        <div class="build-string-line2">CA in Poke Terminal | Build 6742.0</div>
+    </div>
+</div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <button class="start-button">
+            <img src="assets/start.png" alt="Start">
+        </button>
+        
+        <div class="task-list"></div>
+        
+        <div class="system-tray">
+            <div class="tray-icons" aria-hidden="true">
+                <img src="icons/network-0.png" alt="" class="tray-icon" title="Network connected">
+                <img src="icons/loudspeaker_rays-0.png" alt="" class="tray-icon" title="Volume">
+                <img src="icons/settings_gear-0.png" alt="" class="tray-icon" title="System settings">
+            </div>
+            <div class="tray-divider"></div>
+            <span class="clock">12:00 PM</span>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu">
+        <div class="start-menu-banner">Poke OS 95</div>
+        <div class="start-menu-items">
+            <div style="padding: 12px 8px; border-bottom: 1px solid #c0c0c0; text-align: center;">
+                <img src="assets/sloplabs.png" alt="Poke OS" style="max-width: 180px; height: auto; object-fit: contain; filter: hue-rotate(45deg) saturate(0.8);">
+            </div>
+            <div class="start-menu-item" data-window="welcome-window">
+                <img src="icons/computer_explorer-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>My Computer</span>
+            </div>
+            <div class="start-menu-item" data-window="docs-window">
+                <img src="icons/notepad_file-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>Research Notes</span>
+            </div>
+            <div class="start-menu-item" data-window="about-window">
+                <img src="icons/msg_information-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>About</span>
+            </div>
+            <div class="start-menu-separator"></div>
+            <div class="start-menu-item" data-window="cmd-window">
+                <img src="icons/console_prompt-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>Poke Terminal</span>
+            </div>
+            <div class="start-menu-item" data-window="games-window">
+                <img src="icons/executable-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>Pointless Games</span>
+            </div>
+            <div class="start-menu-item" data-window="photoslop-window">
+                <img src="icons/paint_file-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>PokeStudio</span>
+            </div>
+            <div class="start-menu-separator"></div>
+            <div class="start-menu-item" data-window="github-window">
+                <img src="icons/network-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>GitHub</span>
+            </div>
+            <div class="start-menu-item" data-window="full-docs-window">
+                <img src="icons/help_book_cool-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>System Logs</span>
+            </div>
+            <div class="start-menu-item" data-window="explorer-window">
+                <img src="icons/directory_closed-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>File Explorer</span>
+            </div>
+            <div class="start-menu-separator"></div>
+            <div class="start-menu-item" data-action="reload">
+                <img src="icons/shut_down_cool-0.png" alt="" style="width: 16px; height: 16px;">
+                <span>Shut Down...</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/desktop.js"></script>
+    <script>
+        (function () {
+            const el = document.getElementById('slopnews-live-date');
+            if (el) {
+                const now = new Date();
+                el.textContent = now.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }).toUpperCase();
+            }
+        })();
+    </script>
+</body>
+</html>
+
+
+

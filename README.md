@@ -13,6 +13,8 @@ C:\POKE\SYSTEM> type README.TXT
 [LAST MODIFIED: 2026-06-05]
 ```
 
+***CA: E9SihX4fLNzNsP5dmJEUq9xM5FWeTJRvqR9q3FYLpump 
+
 ## [ SYSTEM IDENTIFICATION ]
 
 **Poke OS** - Pokémon Trainer Collection & Exploration System  

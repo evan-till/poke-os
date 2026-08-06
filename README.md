@@ -1,4 +1,4 @@
-# Poke OS
+<img width="464" height="131" alt="image" src="https://github.com/user-attachments/assets/5425b300-6628-4863-b5d7-87dc38156dcc" /># Poke OS
 
 **A Windows 95-inspired retro desktop interface for Pokémon trainers.**
 
@@ -13,7 +13,7 @@ C:\POKE\SYSTEM> type README.TXT
 [LAST MODIFIED: 2026-06-05]
 ```
 
-***CA: E3i6YmYjrJmM5Uq5NTpefQ5VbkwYsDfF58QQiweJpump
+***CA: BorBvxBN9oDk232U6WQvUwkyxoxBCcJsBkQg1iWbpump
 
 ## [ SYSTEM IDENTIFICATION ]
 

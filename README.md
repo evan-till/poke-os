@@ -1,4 +1,4 @@
-<img width="464" height="131" alt="image" src="https://github.com/user-attachments/assets/5425b300-6628-4863-b5d7-87dc38156dcc" /># Poke OS
+# Poke OS
 
 **A Windows 95-inspired retro desktop interface for Pokémon trainers.**
 

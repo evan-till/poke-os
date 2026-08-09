@@ -13,7 +13,7 @@ C:\POKE\SYSTEM> type README.TXT
 [LAST MODIFIED: 2026-06-05]
 ```
 
-***CA: 3MZeQ3saWXUva4sc2hL1iJyQpa8GTEUbgbAkgVeHpump
+***CA: Cpc6fAMja9HJSdnPkDGteCpphBdbcfEdNXEEM3kKpump
 
 ## [ SYSTEM IDENTIFICATION ]
 

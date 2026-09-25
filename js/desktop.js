@@ -6,10 +6,10 @@ import { WindowShellManager } from './core/window-shell-manager.js';
 import { FileExplorerManager } from './explorer/file-explorer-manager.js';
 import { PokeVaultQuest } from './quests/poke-vault-quest.js';
 import { GhostBranchQuest } from './quests/ghost-branch-quest.js';
-import { GamesManager } from './games/games-manager.js';
 import { SlopcadeManager } from './slopcade/slopcade-manager.js';
 import { MicroslopFlightSimulator } from './flight-sim/microslop-flight-simulator.js';
 import { PhotoslopManager } from './photoslop/photoslop-manager.js';
+import { WalletManager } from './core/wallet-manager.js';
 
 class Desktop95 {
   constructor() {
@@ -41,13 +41,12 @@ class Desktop95 {
         }
       }
     });
-    this.gamesManager = new GamesManager({
-      playClickSound: () => this.playClickSound(),
-      showBotAssistant: (message) => this.botAssistant.show(message)
-    });
     this.slopcadeManager = new SlopcadeManager();
     this.microslopFlightSimulator = new MicroslopFlightSimulator();
     this.photoslopManager = new PhotoslopManager({
+      playClickSound: () => this.playClickSound()
+    });
+    this.walletManager = new WalletManager({
       playClickSound: () => this.playClickSound()
     });
     
@@ -124,9 +123,7 @@ class Desktop95 {
     
     // Setup button and link handlers
     this.setupButtonHandlers();
-
-    // Setup pointless games module
-    this.gamesManager.setup();
+    this.walletManager.setup();
 
     // Setup Slopcade arcade
     this.slopcadeManager.init();
@@ -228,9 +225,6 @@ class Desktop95 {
         if (!document.getElementById('terminal-output').hasChildNodes()) {
           this.setupTerminal();
         }
-        if (!this.botAssistant.shown && msg) this.botAssistant.show(msg);
-      } else if (windowId === 'games-window') {
-        this.gamesManager.setup();
         if (!this.botAssistant.shown && msg) this.botAssistant.show(msg);
       } else if (windowId === 'slopcade-window') {
         this.slopcadeManager.init();

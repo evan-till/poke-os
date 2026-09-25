@@ -8,7 +8,7 @@ Collect cards. Explore hidden archives. Recover Poke Vault secrets. All from a n
 C:\POKE\SYSTEM> type README.TXT
 
 [POKE LABS RESEARCH DIVISION]
-[POKE OS VERSION 1.0]
+[POKE OS VERSION 1.2.1]
 [COLLECTION MANAGEMENT SYSTEM]
 [LAST MODIFIED: 2026-06-05]
 ```
@@ -18,7 +18,7 @@ C:\POKE\SYSTEM> type README.TXT
 ## [ SYSTEM IDENTIFICATION ]
 
 **Poke OS** - Pokémon Trainer Collection & Exploration System  
-**Version:** 1.0  
+**Version:** 1.2.1
 **Status:** ACTIVE AND TRAINING  
 **Focus:** Card Collection, Vault Recovery, Terminal Exploration  
 **Community:** Open-source community-driven development

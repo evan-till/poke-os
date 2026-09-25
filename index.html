@@ -114,7 +114,7 @@
     <div id="boot-screen">
         <img class="boot-logo" src="assets/epa.png" alt="EPA Logo">
         <div class="logo-container">
-            <h1>POKE BIOS v1.0.0</h1>
+            <h1>POKE BIOS v1.2.1</h1>
             <pre>
     ____   ____  __ __ ______     ____  _____
    / __ \ / __ \/ //_// ____/    / __ \/ ___/
@@ -130,9 +130,9 @@
         </div>
         
         <div class="system-info">
-            <p>Poke OS Retro Build 1.0.0</p>
+            <p>Poke OS Retro Build 1.2.1</p>
             <p>Poke Labs Card Hunt Engine - Collector Edition</p>
-            <p>Poke OS v1.0.0 (Prize Hunt Alpha)</p>
+            <p>Poke OS v1.2.1 (Prize Hunt Alpha)</p>
             <p>(C) Copyright Poke Labs, Collector Crypt Partner Build</p>
             <p style="margin-top: 20px; color: #ffff00;">WARNING: Card hunts may contain empty drops</p>
             <p style="margin-top: 8px; color: #ff5555;">REAL COLLECTOR CRYPT PRIZES DETECTED - Hunt nearby card drops<span class="loading-dots"></span></p>
@@ -152,6 +152,10 @@
             <div class="desktop-icon" data-window="welcome-window" tabindex="0">
                 <img src="icons/computer_explorer-1.png" alt="" style="width: 32px; height: 32px;">
                 <span class="icon-label">My Computer</span>
+            </div>
+            <div class="desktop-icon" data-window="wallet-window" tabindex="0">
+                <img src="icons/network-1.png" alt="" style="width: 32px; height: 32px;">
+                <span class="icon-label">Connect Wallet</span>
             </div>
             <div class="desktop-icon" data-window="docs-window" tabindex="0">
                 <img src="icons/notepad_file-1.png" alt="" style="width: 32px; height: 32px;">
@@ -180,10 +184,6 @@
             <div class="desktop-icon" data-window="x-window" tabindex="0">
                 <img src="icons/network-1.png" alt="" style="width: 32px; height: 32px;">
                 <span class="icon-label">@Poke_SYS</span>
-            </div>
-            <div class="desktop-icon" data-window="games-window" tabindex="0">
-                <img src="icons/executable-1.png" alt="" style="width: 32px; height: 32px;">
-                <span class="icon-label">Retro Games</span>
             </div>
             <div class="desktop-icon" data-window="slopcade-window" tabindex="0">
                 <img src="icons/game_freecell-2.png" alt="" style="width: 32px; height: 32px;">
@@ -222,7 +222,7 @@
                 <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
                     <img src="assets/slop-t-trans.png" alt="Poke" style="width: 64px; height: 64px; image-rendering: pixelated;">
                     <div>
-                        <h1 class="welcome95-title">Poke OS v1.0.0</h1>
+                        <h1 class="welcome95-title">Poke OS v1.2.1</h1>
                         <p class="welcome95-subtitle">Card hunt systems active. Real Collector Crypt prizes live.</p>
                     </div>
                 </div>
@@ -300,6 +300,59 @@
             </div>
             <div class="status-bar">
                 <div class="status-bar-field">Ready</div>
+            </div>
+        </div>
+
+        <!-- Wallet Window -->
+        <div class="window" id="wallet-window" style="width: 480px; height: 390px;">
+            <div class="title-bar">
+                <div class="title-bar-text">
+                    <img src="icons/network-0.png" alt="" style="width: 16px; height: 16px;">
+                    Solana Wallet - Poke OS
+                </div>
+                <div class="title-bar-controls">
+                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
+                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
+                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
+                </div>
+            </div>
+            <div class="window-body">
+                <h2>Wallet Console</h2>
+                <p style="font-size: 12px; line-height: 1.5;">Connect a Solana wallet to participate in card hunts and receive Collector Crypt collectibles.</p>
+
+                <div class="fieldset" style="margin-top: 12px;">
+                    <div class="fieldset-legend">Connection Status</div>
+                    <table width="100%" cellpadding="5" style="background: white; font-size: 12px;">
+                        <tr>
+                            <td><strong>Wallet:</strong></td>
+                            <td id="wallet-address">Not connected</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Network:</strong></td>
+                            <td id="wallet-network">Waiting for connection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provider:</strong></td>
+                            <td>Phantom or compatible Solana wallet</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div style="background: #eef8ff; padding: 10px; border-left: 3px solid #66a3ff; margin-top: 12px;">
+                    <p id="wallet-status" style="font-size: 11px; line-height: 1.4; margin: 0;">No wallet connected. Connect to begin.</p>
+                </div>
+
+                <p style="text-align: center; margin: 16px 0 10px;">
+                    <button class="win95-button" id="wallet-connect-button">Connect Wallet</button>
+                    <button class="win95-button" id="wallet-disconnect-button" disabled>Disconnect</button>
+                    <button class="win95-button" id="wallet-copy-button" disabled>Copy Address</button>
+                </p>
+                <p style="font-size: 10px; color: #666; line-height: 1.4;">Poke OS never asks for your seed phrase. Approve connections only in your wallet extension.</p>
+                <p style="font-size: 11px; text-align: center; margin-top: 12px;"><a href="https://phantom.app/download" target="_blank" rel="noopener">Get Phantom Wallet</a></p>
+            </div>
+            <div class="status-bar">
+                <div class="status-bar-field">Solana wallet interface</div>
+                <div class="status-bar-field">$PokeOS ready</div>
             </div>
         </div>
 
@@ -705,27 +758,6 @@
             </div>
         </div>
 
-        <div class="window" id="games-window" style="width: 560px; height: 500px;">
-            <div class="title-bar">
-                <div class="title-bar-text">
-                    <img src="icons/executable-0.png" alt="" style="width: 16px; height: 16px;">
-                    Pointless Games
-                </div>
-                <div class="title-bar-controls">
-                    <button class="title-bar-btn minimize-btn" aria-label="Minimize">_</button>
-                    <button class="title-bar-btn maximize-btn" aria-label="Maximize">□</button>
-                    <button class="title-bar-btn close-btn" aria-label="Close">×</button>
-                </div>
-            </div>
-            <div class="window-body" style="padding: 0; height: calc(100% - 32px);">
-                <div id="games-app" style="height: 100%;"></div>
-            </div>
-            <div class="status-bar">
-                <div class="status-bar-field">No leaderboard. No reward.</div>
-                <div class="status-bar-field">v0.0.1 pointless</div>
-            </div>
-        </div>
-
         <!-- Poke Arcade Window -->
         <div class="window" id="slopcade-window" style="width: 500px; height: 600px;">
             <div class="title-bar">
@@ -790,7 +822,7 @@
             </div>
         </div>
 
-        <!-- Slop Terminal Window -->
+        <!-- PokeOS Terminal Window -->
         <div class="window" id="cmd-window" style="width: 650px; height: 450px;">
             <div class="title-bar">
                 <div class="title-bar-text">
@@ -1103,7 +1135,7 @@ Summary:
 
     <!-- Build String (Windows Neptune style) -->
     <div class="build-string">
-        <div class="build-string-line1">Poke OS v2.4.7 | Collector Vault Active</div>
+        <div class="build-string-line1">Poke OS v1.2.1 | Collector Vault Active</div>
         <div class="build-string-line2">CA in Poke Terminal | Build 6742.0</div>
     </div>
 </div>
@@ -1150,10 +1182,6 @@ Summary:
             <div class="start-menu-item" data-window="cmd-window">
                 <img src="icons/console_prompt-0.png" alt="" style="width: 16px; height: 16px;">
                 <span>Poke Terminal</span>
-            </div>
-            <div class="start-menu-item" data-window="games-window">
-                <img src="icons/executable-0.png" alt="" style="width: 16px; height: 16px;">
-                <span>Pointless Games</span>
             </div>
             <div class="start-menu-item" data-window="photoslop-window">
                 <img src="icons/paint_file-0.png" alt="" style="width: 16px; height: 16px;">

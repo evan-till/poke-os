@@ -58,7 +58,7 @@ body {
   height: calc(100vh - var(--taskbar-height));
   background: var(--win95-teal);
   overflow: hidden;
-  background-image: url('../assets/wp2808020.webp');
+  background-image: url('../assets/wallpaper.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

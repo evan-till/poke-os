@@ -14,7 +14,7 @@ export const assistantMessages = [
   "check the System Logs to understand collector market evolution and trends.",
   "Poke Terminal command 'investigate' starts a hidden investigation. type it now.",
   "File Explorer has links to research data, collection archives, and market histories.",
-  "Pokecade contains retro games. PokeStudio for image editing. Flight Trainer for fun."
+  "PokeStudio is ready for image editing. Flight Trainer is ready for a quick flight."
 ];
 
 export const windowMessages = {
@@ -22,15 +22,15 @@ export const windowMessages = {
   'github-window': "this repository hosts trainer tools, datasets, and card catalogs.",
   'x-window': "@Poke_SYS posts community updates, tournament notes, and card drops.",
   'about-window': "learn about Poke OS v1.0 and Poke Labs research initiatives.",
+  'wallet-window': "wallet console ready. connect a Solana wallet to receive Collector Crypt rewards.",
   'cmd-window': "Poke Terminal ready. type 'help' for Poke-specific commands and tools.",
-  'games-window': "arcade and Pokecade games initialized. play to earn collector hints.",
   'slopcade-window': "Pokecade arcade system initialized. enjoy retro battles and scores.",
   'flightsim-window': "flight trainer online. practice maneuvers and collection deliveries.",
   'photoslop-window': "PokeStudio initialized. edit images and create card mockups."
 };
 
 export const terminalBootLines = [
-  'Poke OS Command Interface [Version 1.0.0]',
+  'Poke OS Command Interface [Version 1.2.1]',
   '(c) 2026 Poke Labs Research Division. Trainer tools and archives.',
   '',
   'Welcome, Trainer! Use the Poke Terminal to explore hidden collections.',

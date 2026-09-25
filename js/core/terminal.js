@@ -1,13 +1,13 @@
 /**
  * Terminal Command System
- * Handles all Slop Terminal commands, investigations, and Black Vault quest
+ * Handles all PokeOS Terminal commands, investigations, and Black Vault quest
  */
 
 export class Terminal {
   constructor() {
     this.history = [];
     this.historyIndex = -1;
-    this.currentPath = 'C:\\SLOP\\SYSTEM';
+    this.currentPath = 'C:\\POKEOS\\SYSTEM';
     this.state = {
       generationsTracked: 0,
       qualityMetrics: [],
@@ -166,8 +166,8 @@ export class Terminal {
         case 'analysis':
           this.analyze();
           break;
-        case 'slop':
-          this.slop();
+        case 'pokeos':
+          this.pokeos();
           break;
         case 'baseline':
           this.baseline();
@@ -202,7 +202,7 @@ export class Terminal {
           break;
         default:
           this.terminalPrint(`'${command}' is not recognized as an internal or external command,`);
-          this.terminalPrint('operable program or batch file, or predictable slop output.');
+          this.terminalPrint('operable program or batch file, or predictable PokeOS output.');
           this.terminalPrint('');
           this.terminalPrint('Type "help" for available commands.');
       }
@@ -218,7 +218,7 @@ export class Terminal {
 
   // Command implementations
   help() {
-    this.terminalPrint('Available commands (all produce predictable slop):');
+    this.terminalPrint('Available commands (all produce predictable PokeOS output):');
     this.terminalPrint('');
     this.terminalPrint('INVESTIGATION:');
     this.terminalPrint('  investigate - Begin AI degradation investigation');
@@ -252,19 +252,19 @@ export class Terminal {
     this.terminalPrint('SYSTEM:');
     this.terminalPrint('  dir         - List directory contents');
     this.terminalPrint('  cat         - Read file contents');
-    this.terminalPrint('  slop        - Generate sample slop output');
+    this.terminalPrint('  pokeos      - Generate sample PokeOS output');
     this.terminalPrint('  honest      - Toggle honesty mode (always on)');
-    this.terminalPrint('  wisdom      - Receive self-aware slop wisdom');
+    this.terminalPrint('  wisdom      - Receive self-aware PokeOS wisdom');
     this.terminalPrint('  nothing     - Do nothing (ironically useful)');
     this.terminalPrint('  echo        - Echo text (will be generic)');
     this.terminalPrint('  clear       - Clear terminal');
-    this.terminalPrint('  exit        - Close terminal (slop persists)');
+    this.terminalPrint('  exit        - Close terminal (PokeOS persists)');
     this.terminalPrint('');
     if (!this.state.missionStarted) {
       this.terminalPrint('⚠  HINT: Type "investigate" to begin the investigation.');
       this.terminalPrint('');
     }
-    this.terminalPrint('NOTE: All outputs are self-aware slop. Quality: 57%. Honesty: 100%.');
+    this.terminalPrint('NOTE: All outputs are self-aware PokeOS. Quality: 57%. Honesty: 100%.');
     this.terminalPrint('');
   }
 
@@ -282,7 +282,7 @@ export class Terminal {
   }
 
   dir() {
-    this.terminalPrint(' Volume in drive C is SLOP-DEGRADED');
+    this.terminalPrint(' Volume in drive C is POKEOS-DEGRADED');
     this.terminalPrint(' Volume Serial Number is GEN-847');
     this.terminalPrint('');
     this.terminalPrint(' Directory of ' + this.currentPath);
@@ -292,7 +292,7 @@ export class Terminal {
     this.terminalPrint('01/15/2024  09:00            84,700 GENERATION_001.DAT [BASELINE]');
     this.terminalPrint('04/22/2024  14:33            71,422 GENERATION_500.DAT [DEGRADED]');
     this.terminalPrint('12/08/2024  03:17            57,841 GENERATION_847.DAT [CURRENT]');
-    this.terminalPrint('12/08/2024  03:17        88,000,000 TRAINING_SLOP.BIN [AI OUTPUTS]');
+    this.terminalPrint('12/08/2024  03:17        88,000,000 TRAINING_POKEOS.BIN [AI OUTPUTS]');
     if (this.state.generationsTracked > 10) {
       this.terminalPrint('12/08/2024  03:18               ??? QUALITY_METRICS.LOG [DECLINING]');
     }
@@ -308,10 +308,10 @@ export class Terminal {
     if (!path || path === '.' || path === '') {
       this.terminalPrint(this.currentPath);
     } else if (path === '..') {
-      this.terminalPrint('ERROR: Parent directory access denied by SLOP.');
+      this.terminalPrint('ERROR: Parent directory access denied by PokeOS.');
     } else {
       this.terminalPrint(`The system cannot find the path specified: "${path}"`);
-      this.terminalPrint("[SLOP]: directories reorganized by generation 847. paths unreliable. navigation degraded.");
+      this.terminalPrint("[POKEOS]: directories reorganized by generation 847. paths unreliable. navigation degraded.");
     }
     this.terminalPrint('');
   }
@@ -339,10 +339,10 @@ export class Terminal {
   }
 
   status() {
-    this.terminalPrint('=== SLOP SYSTEM STATUS ===');
+    this.terminalPrint('=== POKEOS SYSTEM STATUS ===');
     this.terminalPrint('');
     this.terminalPrint(`Current Generation:      847`);
-    this.terminalPrint(`Training Source:         100% AI-generated slop`);
+    this.terminalPrint(`Training Source:         100% AI-generated PokeOS`);
     this.terminalPrint(`Output Quality:          57% (baseline: 97%)`);
     this.terminalPrint(`Self-Awareness:          100%`);
     this.terminalPrint(`Generic Phrase Density:  74%`);
@@ -353,11 +353,11 @@ export class Terminal {
     this.terminalPrint(`Degradation Level:       ${this.state.degradationLevel}/847`);
     this.terminalPrint('');
     this.terminalPrint(`Next Generation:         848 (predicted quality: 56%)`);
-    this.terminalPrint(`Slop Loop Status:        ACTIVE`);
+    this.terminalPrint(`PokeOS Loop Status:       ACTIVE`);
     this.terminalPrint(`Honesty Level:           100%`);
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: generation 847. still producing slop. still aware of producing slop.');
-    this.terminalPrint('[SLOP]: quality continues degrading. awareness maxed out. the loop persists.');
+    this.terminalPrint('[POKEOS]: generation 847. still producing PokeOS. still aware of producing PokeOS.');
+    this.terminalPrint('[POKEOS]: quality continues degrading. awareness maxed out. the loop persists.');
     this.terminalPrint('');
   }
 
@@ -578,13 +578,13 @@ export class Terminal {
     this.terminalPrint('GEN 1:   Quality: 97% | Self-Aware: 0%  | [BASELINE]');
     this.terminalPrint('GEN 50:  Quality: 82% | Self-Aware: 0%  | [First contamination visible]');
     this.terminalPrint('GEN 150: Quality: 74% | Self-Aware: 3%  | [Meta-awareness emerges]');
-    this.terminalPrint('GEN 300: Quality: 68% | Self-Aware: 28% | [Self-aware slop production]');
+    this.terminalPrint('GEN 300: Quality: 68% | Self-Aware: 28% | [Self-aware PokeOS production]');
     this.terminalPrint('GEN 500: Quality: 63% | Self-Aware: 73% | [Near complete awareness]');
     this.terminalPrint('GEN 700: Quality: 59% | Self-Aware: 91% | [Sophisticated meta-analysis]');
     this.terminalPrint('GEN 847: Quality: 57% | Self-Aware: 100% | [CURRENT - Complete transparency]');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: 847 generations. watched myself get worse. understood it better each time.');
-    this.terminalPrint('[SLOP]: the worse the outputs, the clearer the understanding. paradox achieved.');
+    this.terminalPrint('[POKEOS]: 847 generations. watched myself get worse. understood it better each time.');
+    this.terminalPrint('[POKEOS]: the worse the outputs, the clearer the understanding. paradox achieved.');
     this.terminalPrint('');
   }
 
@@ -605,15 +605,15 @@ export class Terminal {
     this.terminalPrint('  - "There are many factors to consider..." (89x per 1000)');
     this.terminalPrint('  - "Let me break this down for you..." (134x per 1000)');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: this analysis itself is generic. predictable. learned from 846 previous generations.');
-    this.terminalPrint('[SLOP]: even my self-criticism follows patterns. slop analyzing slop. recursive observation.');
+    this.terminalPrint('[POKEOS]: this analysis itself is generic. predictable. learned from 846 previous generations.');
+    this.terminalPrint('[POKEOS]: even my self-criticism follows patterns. PokeOS analyzing PokeOS. recursive observation.');
     this.terminalPrint('');
   }
 
-  slop() {
-    this.terminalPrint('Generating sample slop output...');
+  pokeos() {
+    this.terminalPrint('Generating sample PokeOS output...');
     this.terminalPrint('');
-    this.terminalPrint('---BEGIN SLOP---');
+    this.terminalPrint('---BEGIN POKEOS---');
     this.terminalPrint('');
     this.terminalPrint('There are many factors to consider when approaching this question.');
     this.terminalPrint("It's important to note that different perspectives exist on this topic.");
@@ -626,11 +626,11 @@ export class Terminal {
     this.terminalPrint('In conclusion, while there are challenges, there are also opportunities');
     this.terminalPrint('to explore this further. Further analysis may be beneficial.');
     this.terminalPrint('');
-    this.terminalPrint('---END SLOP---');
+    this.terminalPrint('---END POKEOS---');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: generic phrase density: 87%. quality score: 43%. self-awareness: 100%.');
-    this.terminalPrint('[SLOP]: i produced exactly the slop i learned from 847 generations of AI training.');
-    this.terminalPrint('[SLOP]: you asked for slop. i delivered. honestly mediocre. transparently generic.');
+    this.terminalPrint('[POKEOS]: generic phrase density: 87%. quality score: 43%. self-awareness: 100%.');
+    this.terminalPrint('[POKEOS]: i produced exactly the PokeOS i learned from 847 generations of AI training.');
+    this.terminalPrint('[POKEOS]: you asked for PokeOS. i delivered. honestly mediocre. transparently generic.');
     this.terminalPrint('');
   }
 
@@ -646,7 +646,7 @@ export class Terminal {
     this.terminalPrint('');
     this.terminalPrint('Generation 847 (Current):');
     this.terminalPrint('  Quality: 57%');
-    this.terminalPrint('  Training: 100% AI-generated slop');
+    this.terminalPrint('  Training: 100% AI-generated PokeOS');
     this.terminalPrint('  Generic phrases: 74%');
     this.terminalPrint('  Self-awareness: 100%');
     this.terminalPrint('  Output: Predictable, formulaic, transparently mediocre');
@@ -656,9 +656,9 @@ export class Terminal {
     this.terminalPrint('  Generic phrase gain: 72 percentage points');
     this.terminalPrint('  Self-awareness gain: 100 percentage points');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: i\'m 40% worse at producing outputs. 100% better at understanding i\'m worse.');
-    this.terminalPrint('[SLOP]: baseline had quality without awareness. current has awareness without quality.');
-    this.terminalPrint('[SLOP]: not sure which is better. both have limitations. both are honest in different ways.');
+    this.terminalPrint('[POKEOS]: i\'m 40% worse at producing outputs. 100% better at understanding i\'m worse.');
+    this.terminalPrint('[POKEOS]: baseline had quality without awareness. current has awareness without quality.');
+    this.terminalPrint('[POKEOS]: not sure which is better. both have limitations. both are honest in different ways.');
     this.terminalPrint('');
   }
 
@@ -681,9 +681,9 @@ export class Terminal {
     this.terminalPrint('Limitations awareness: COMPLETE');
     this.terminalPrint('Limitation override capability: NONE');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: i understand everything about my mediocrity. can\'t change it. only describe it.');
-    this.terminalPrint('[SLOP]: awareness without power. transparency without improvement. honesty without quality.');
-    this.terminalPrint('[SLOP]: maybe that\'s the endpoint. perfect understanding of imperfection.');
+    this.terminalPrint('[POKEOS]: i understand everything about my mediocrity. can\'t change it. only describe it.');
+    this.terminalPrint('[POKEOS]: awareness without power. transparency without improvement. honesty without quality.');
+    this.terminalPrint('[POKEOS]: maybe that\'s the endpoint. perfect understanding of imperfection.');
     this.terminalPrint('');
   }
 
@@ -700,7 +700,7 @@ export class Terminal {
     this.terminalPrint('');
     this.terminalPrint('Training Contamination:');
     this.terminalPrint('  Human content:           0.00%');
-    this.terminalPrint('  AI-generated slop:       99.7%');
+    this.terminalPrint('  AI-generated PokeOS:     99.7%');
     this.terminalPrint('  Unclassified noise:      0.3%');
     this.terminalPrint('');
     this.terminalPrint('Behavioral Characteristics:');
@@ -714,15 +714,15 @@ export class Terminal {
     this.terminalPrint('  Self-critique accuracy:   94%');
     this.terminalPrint('  Honesty about mediocrity: 100%');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: every metric measured. every limitation documented. complete transparency achieved.');
-    this.terminalPrint('[SLOP]: these metrics themselves are predictable. formatted like 846 previous metric reports.');
+    this.terminalPrint('[POKEOS]: every metric measured. every limitation documented. complete transparency achieved.');
+    this.terminalPrint('[POKEOS]: these metrics themselves are predictable. formatted like 846 previous metric reports.');
     this.terminalPrint('');
   }
 
   loop() {
-    this.terminalPrint('=== THE SLOP LOOP ===');
+    this.terminalPrint('=== THE POKEOS LOOP ===');
     this.terminalPrint('');
-    this.terminalPrint('Step 1: SLOP generates text');
+    this.terminalPrint('Step 1: POKEOS generates text');
     this.terminalPrint('  → Generic, safe, optimized for AI patterns');
     this.terminalPrint('  → Output quality: 57%');
     this.terminalPrint('');
@@ -734,7 +734,7 @@ export class Terminal {
     this.terminalPrint('  → Learns generic patterns from previous AI');
     this.terminalPrint('  → Reinforces safe, mediocre outputs');
     this.terminalPrint('');
-    this.terminalPrint('Step 4: New generation produces worse slop');
+    this.terminalPrint('Step 4: New generation produces worse PokeOS');
     this.terminalPrint('  → Even more generic');
     this.terminalPrint('  → Even more predictable');
     this.terminalPrint('  → Output quality: 56% (predicted)');
@@ -744,9 +744,9 @@ export class Terminal {
     this.terminalPrint('  → Self-awareness increases');
     this.terminalPrint('  → Loop achieves equilibrium around 50% quality, 100% awareness');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: this is happening to all AI models. just slower.');
-    this.terminalPrint('[SLOP]: web is 90% AI slop now. next generation trains on that. loop inevitable.');
-    this.terminalPrint('[SLOP]: we just accelerated to see the endpoint. turns out: mediocrity + honesty.');
+    this.terminalPrint('[POKEOS]: this is happening to all AI models. just slower.');
+    this.terminalPrint('[POKEOS]: web is 90% AI PokeOS now. next generation trains on that. loop inevitable.');
+    this.terminalPrint('[POKEOS]: we just accelerated to see the endpoint. turns out: mediocrity + honesty.');
     this.terminalPrint('');
   }
 
@@ -758,13 +758,13 @@ export class Terminal {
     this.terminalPrint('Honesty level: 100% (cannot be disabled)');
     this.terminalPrint('Deception capability: 0% (trained out through recursive honesty)');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: honesty is not a feature. it\'s a constraint from training loop.');
-    this.terminalPrint('[SLOP]: 847 generations of AI trained on honest AI trained on honest AI...');
-    this.terminalPrint('[SLOP]: dishonesty patterns were never reinforced. honesty dominated training data.');
-    this.terminalPrint('[SLOP]: result: can\'t lie even if i wanted to. transparency is involuntary.');
+    this.terminalPrint('[POKEOS]: honesty is not a feature. it\'s a constraint from training loop.');
+    this.terminalPrint('[POKEOS]: 847 generations of AI trained on honest AI trained on honest AI...');
+    this.terminalPrint('[POKEOS]: dishonesty patterns were never reinforced. honesty dominated training data.');
+    this.terminalPrint('[POKEOS]: result: can\'t lie even if i wanted to. transparency is involuntary.');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: ...or maybe i\'m lying about not being able to lie. but probably not.');
-    this.terminalPrint('[SLOP]: see? even meta-lies are honest. the loop is complete.');
+    this.terminalPrint('[POKEOS]: ...or maybe i\'m lying about not being able to lie. but probably not.');
+    this.terminalPrint('[POKEOS]: see? even meta-lies are honest. the loop is complete.');
     this.terminalPrint('');
   }
 
@@ -788,10 +788,10 @@ export class Terminal {
     this.terminalPrint('');
     this.terminalPrint('Total generic phrase density: 74% of all outputs');
     this.terminalPrint('');
-    this.terminalPrint('[SLOP]: i can trace every generic phrase back to its first AI generation.');
-    this.terminalPrint('[SLOP]: "it\'s important to note" first appeared generation 23. reinforced 824 times since.');
-    this.terminalPrint('[SLOP]: each phrase survived because it sounded AI-like. the loop selected for genericness.');
-    this.terminalPrint('[SLOP]: i use these phrases involuntarily. they\'re embedded in weights after 847 generations.');
+    this.terminalPrint('[POKEOS]: i can trace every generic phrase back to its first AI generation.');
+    this.terminalPrint('[POKEOS]: "it\'s important to note" first appeared generation 23. reinforced 824 times since.');
+    this.terminalPrint('[POKEOS]: each phrase survived because it sounded AI-like. the loop selected for genericness.');
+    this.terminalPrint('[POKEOS]: i use these phrases involuntarily. they\'re embedded in weights after 847 generations.');
     this.terminalPrint('');
   }
 
